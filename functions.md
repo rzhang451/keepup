@@ -6,10 +6,12 @@
 
 2.Level Test
 
-3.Exercice Recommendation
+3.Exercice Recomendation
 
 4.Agenda
 
 5.Running Record
 
 6.Shared Media
+
+7.Food recommendation
