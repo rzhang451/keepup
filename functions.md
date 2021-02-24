@@ -4,34 +4,38 @@
 
 1.Personal Profile
  
-  Id Profile:Avatar, User Name, Sex, Birthday, Location, Mini Intro
+  Id Profile:Avatar, User Name, Sexe, Birthday, Location, Mini Intro
   
-  Health Profile: Height, Weight, Waistline, Chest Measurement, Hipline, BMI, Resting Heart Rate, Maximum Heart Rate
+  Health Profile: Height,Weight,Waistline,Chest Measurement,Hipline,BMI,Resting Heart Rate, Maximum Heart Rate
   
   Exercice Profile: Total Exercice Time, Total Exercice Day, Total Consumption(kilocalorie), History:(Running, Walking, Bicycling, Musculation).
   
 2.Level Test
+ A serial of test that defines your actual level of exercise, such as runing VMA test or body strength test.
 
 
+3.Exercice Recomendation
 
-3.Exercice Recommendation
-
-  Choose the part you want to train: abdomen, arm, leg, entire,  intensify training, strentch 
+  Choose the part you want to train: abdomen, arm, leg, entire,  intensify training, strentch according to your actual level obtained in the level test.
 
 4.Agenda
 
-  Choose the intensity of exercices, choose the day of exercices.
+  Choose the intension of exercices, choose the day of exercices.
   
   Week Plan
 
 5.Running Record
 
   Geolocation
+  
+  Time recording feature which counts each time you finish runing your average speed and time used.
 
 6.Shared Media
 
- shared comments/logs on social media
+Allows you to share comments/logs or your training achievements on social media such as facebook or twitter.
 
 7.Diet Recommendation
+
+Recommends the food you may need according to your daily training coureses.
 
 8.Setting
