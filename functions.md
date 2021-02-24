@@ -6,7 +6,7 @@
 
 2.Level Test
 
-3.Exercice Recomendation
+3.Exercice Recommendation
 
 4.Agenda
 
