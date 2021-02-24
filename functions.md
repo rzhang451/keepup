@@ -8,13 +8,13 @@
   
   Health Profile: Height, Weight, Waistline, Chest Measurement, Hipline, BMI, Resting Heart Rate, Maximum Heart Rate
   
-  Exercice Profile: Total Exercice Time, Total Exercice Day, Total Cunsmeption(kilocalorie), History:(Running, Walking, Bicycling, Musculation).
+  Exercice Profile: Total Exercice Time, Total Exercice Day, Total Consumption(kilocalorie), History:(Running, Walking, Bicycling, Musculation).
   
 2.Level Test
 
 
 
-3.Exercice Recomendation
+3.Exercice Recommendation
 
   Choose the part you want to train: abdomen, arm, leg, entire,  intensify training, strentch 
 
