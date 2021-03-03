@@ -32,10 +32,10 @@
 
 6.Shared Media
 
-Allows you to share comments/logs or your training achievements on social media such as facebook or twitter.
+  Allows you to share comments/logs or your training achievements on social media such as facebook or twitter.
 
 7.Diet Recommendation
 
-Recommends the food you may need according to your daily training coureses.
+  Recommends the food you may need according to your daily training coureses.
 
 8.Setting
