@@ -14,6 +14,7 @@
   A serial of test that defines your actual level of exercise, such as runing VMA test or body strength test.
 
 3.Course search engine
+
   Users can search the exercies they want to practice.
 
 4.Exercice Recomendation
@@ -26,7 +27,7 @@
   
   Week Plan
 
-6.Running Record
+6.Running Record 
 
   Geolocation
   
@@ -36,7 +37,7 @@
 
   Allows you to share comments/logs or your training achievements on social media such as facebook or twitter.
 
-8.Diet Recommendation
+8.Diet Recommendation *
 
   Recommends the food you may need according to your daily training coureses.
 
