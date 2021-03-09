@@ -2,7 +2,7 @@
 
 24/02/2021
 
-1.Personal Profile Ziyu
+1.Personal Profile 
  
   Id Profile:Avatar, User Name, Sexe, Birthday, Location, Mini Intro
   
@@ -10,14 +10,14 @@
   
   Exercice Profile: Total Exercice Time, Total Exercice Day, Total Consumption(kilocalorie), History:(Running, Walking, Bicycling, Musculation).
   
-2.Level Test Xinqing
+2.Level Test 
   A serial of test that defines your actual level of exercise, such as runing VMA test or body strength test.
 
-3.Course search engine Ranyi
+3.Course search engine 
 
   Users can search the exercies they want to practice.
 
-4.Exercice Recomendation Xinqing
+4.Exercice Recomendation 
 
   Choose the part you want to train: abdomen, arm, leg, entire,  intensify training, strentch according to your actual level obtained in the level test.
 
@@ -33,7 +33,7 @@
   
   Time recording feature which counts each time you finish runing your average speed and time used.
 
-7.Shared Media Weiyi
+7.Shared Media 
 
   Allows you to share comments/logs or your training achievements on social media such as facebook or twitter.
 
@@ -41,4 +41,4 @@
 
   Recommends the food you may need according to your daily training coureses.
 
-9.Setting Ziyu
+9.Setting 
