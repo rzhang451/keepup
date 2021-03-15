@@ -4,7 +4,7 @@ var app = express();
 var profileRouter = require('./routers/profileRouter');
 var levelTest = require('./routers/levelTestRouter');
 var search = require('./routers/searchRouter');
-var recommandation = require('./routers/recommandationRouter');
+var course = require('./routers/courseRouter');
 var sharedMedia = require('./routers/sharedMediaRouter');
 var setting = require('./routers/settingRouter');
 
