@@ -8,10 +8,10 @@ var recommandation = require('./routers/recommandationRouter');
 var sharedMedia = require('./routers/sharedMediaRouter');
 var setting = require('./routers/settingRouter');
 
-app.get('\login',function(req,res){
+app.get('/login',function(req,res){
   res.send('Welcome to KeepUp');
 });
-
+app.use('/profile',index)
 
 app.listen(3000);
 console.log('listening to port 3000');
