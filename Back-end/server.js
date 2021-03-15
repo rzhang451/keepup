@@ -1,15 +1,15 @@
 var express = require('express');
 var app = express();
 
-var profileRouter = require('./routes/profileRouter');
-var levelTest = require('./routes/levelTestRouter');
-var search = require('./routes/searchRouter');
-var recommandation = require('./routes/recommandationRouter');
-var sharedMedia = require('./routes/sharedMediaRouter');
-var setting = require('./routes/settingRouter');
+var profileRouter = require('./routers/profileRouter');
+var levelTest = require('./routers/levelTestRouter');
+var search = require('./routers/searchRouter');
+var recommandation = require('./routers/recommandationRouter');
+var sharedMedia = require('./routers/sharedMediaRouter');
+var setting = require('./routers/settingRouter');
 
 app.get('\login',function(req,res){
-
+  res.send('Welcome to KeepUp');
 });
 
 
