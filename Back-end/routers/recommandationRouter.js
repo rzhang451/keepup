@@ -1,6 +1,6 @@
 var express = require('express');
 var app = express();
-const recommandation = 
+const recommandation = require('../controller/recommandationCtrl.js');
 
 router.get('/',)
 
