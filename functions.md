@@ -1,6 +1,6 @@
 //This document contains the details of all functions we implement in.
 
-24/02/2021
+Updated 17/03/2021
 
 1.Personal Profile 
  
