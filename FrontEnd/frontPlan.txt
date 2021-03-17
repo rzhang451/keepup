@@ -1,0 +1,182 @@
+//This document involves all pages needed.
+
+0.Main Page
+  
+  Addresse: -->login:/mainpage/:id   -->default:/mainpage
+  Type of demand: Get
+  data: login information
+  -->return course information and profile information
+  -->course recommendation: if login, then exercice frequent
+                            if not login, then exercice default
+  -->agenda: if login, then agenda
+             if not login, then show 'you haven't login yet'.
+  
+  1)Search: search for keyword.
+    --> Transfer to Result Page(3).
+  2)Course Search according to parameters.
+    -->Transfer to Course Search Page(4).
+  3)Level Test:
+    If login --> Transfer to Level Test Page(5).
+    If not login --> Transfer to Login Page(1).
+  4)Course Recommendation:
+    -->Transfer to Course Page(6).
+  5)Course:
+    -->Transfer to Course Page(6).
+  6)Shared Media:
+    -->Transfer to Shared Media Page(7).
+  7)Profile:
+    If login --> Transfer to Profile Page(8)
+    If not login --> Transfer to Login Page(1) 
+ 
+1.Login Page
+  Address:/login
+  
+  1) Login Submit:
+     Addresse: /login/submit
+     Type of demande: 
+     data: Id, Password.
+     If successful: Transfer to Main Page(0)
+     If not successful: Login Page(1)
+  2) Sign Up:
+     -->Transfer to Sign Up Page(2).
+  3) Forget Password???
+  4) Return:
+     -->Return to Main Page(0)
+  
+2. Sign Up Page
+  Address: /login/sign-up
+  
+  1) Sign Up Submit:
+     Address: /login/sign-up/submit
+     Type of demande:
+     data: Id, Password
+     -->Transfer to Main Page(0)
+  2) Login:
+     -->Transfer to Login Page(1)
+
+3. Result Page
+
+  Address:/result/?find='keyword'
+  data: goal, duration, type of exercice, difficulty
+  
+  1)Click Course:
+    -->Transfer to correspond pages.
+
+4.Course Search Page
+
+  Address:/course/my-recommendation
+  
+  1)Submit:
+    Address:/course/my-recommendation/submit
+    -->Transfer to Result Page(3)
+  
+5.Level Test
+  
+  Address:/level-test/:id
+  -->download exercices
+  -->pages change when one exercice is done, and result is filled
+  
+  1) Submit Result
+    Address: /level-test/submit/:id
+    data: arm,core,leg
+    -->Transfer to Profile Page(8)
+
+6.Course Page
+  Address: -->login:/course/:id  default:/course
+  Main Parts:
+  1) My Courses ->login/not login(NULL)
+  2) My Agenda ->login/not login(NULL)
+  3) All courses
+
+  1) Click Course
+    -->Transfer to correspond pages.
+
+7.Shared Media Page
+  Address: /shared-media/:id
+  
+  1) Upload Photo/Comments:
+     -->Transfer to Comment Page(9)
+  2) Click Comments:
+     -->Transfer to Show Comment Page(10)
+  3) My Friends:
+     -->Transfer to Friend Page(11)
+
+8.Profile Page
+  Address: /profile/:id
+  data: id
+  If login --> Stay
+  If not login --> Transfer to Login Page(1).
+  
+  1)My Profile:
+    -->Transfer to My Profile Page(12)
+  2)My Health Data:
+    -->Transfer to My Health Data Page(13)
+  3)My History:
+    -->Transfer to My History Page(14)
+
+9.Comment Page
+  Address: /shared-media/:id/comment
+  
+  1) Comment Submit:
+     Address: /shared-media/:id/comment/submit
+     data: comment
+  2) Upload Picture ???
+  2) Cancel:
+     -->Transfer to Shared Media Page(7)
+
+10.Show Comment Page
+   Address: /shared-media/:id/comment/show/:comment
+   
+   1) Make Friend:
+      Address: /shared-media/:id/friend/make-friend
+      -->Transfer to Shared Media Page(7)
+   2) Return:
+      -->Return to Shared Media Page(7)
+
+11.Friend Page
+   Address: /shared-media/:id/friend
+   
+   1) Search: 
+      -->Transfer to Result Page
+   2) Delete Friend:
+      Address: /shared-media/:id/friend/delete/:friend
+   3) Add Friend:
+      Address: /shared-media/:id/friend/add/:friend
+
+12.My Profile Page
+  Address: /profile/:id/my-profile
+  
+  1) Change Profile:
+     Address: /profile/:id/my-profile/:type(name/sexe/location/etc)
+  
+  2) Return:
+     -->Return to Profile Page(8)
+
+13.My Health Data Page
+  Address: /profile/:id/my-health-data
+  
+  1) Change Data
+    Address: /profile/:id/my-health-data/:type(weight/height/etc)
+  
+  2) Return:
+     -->Return to Profile Page(8)
+     
+14.My History Page
+  Address: /profile/:id/my-history
+  
+  1) Return:
+     -->Return to Profile Page(8)
+
+15. Video Page
+  Address: /course/video/:vnumber
+  
+  1)Video Finished:
+    -->Transfer to comment
+    Address: /course/video/:vnumber/comment/:id
+    data: Grade of feeling, Comment, Photo...
+  
+  
+  
+  
+  
+  
