@@ -4,6 +4,7 @@
 1. Id Profile Database
   #Id Number: Number,
   #User Name: String,
+  Password: Number,
   #Sexe: String/Character,
   //Birthday: Number,
   #Location: String,
