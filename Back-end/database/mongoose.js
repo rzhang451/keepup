@@ -59,3 +59,13 @@ Profile.remove({username:'zhangsan'},(err)=>{
   }
 })
 
+//exemple of modify
+Profile.update({location:"Lyon"},{$set:{username:"lisi"}},(err)=>{
+  if (!err){
+    console.log("success")
+  }else{
+    throw err
+  }
+})
+
+
