@@ -32,7 +32,7 @@ profileSchema.methods.pwd = function(){
 }
 //Model
 var Profile = mongoose.model('Profile',profileSchema);
-//新增一个实例
+//add an example
 var zhangsan = new Profile({
   username: 'zhangsan',
   password: '123456',
@@ -51,7 +51,7 @@ zhangsan.save(function(err,zhangsan){
 });
 
 //example of deletion
-Profile.remove({username:'zhangsan'},(err)=>{
+Profile.remove({username:'zhangsan'},(err)=>{ //delete the person whose name is "zhangsan"
   if (!err){
     console.log("sucessfully deleted!")
   }else{
@@ -60,9 +60,26 @@ Profile.remove({username:'zhangsan'},(err)=>{
 })
 
 //exemple of modification
-Profile.update({location:"Lyon"},{$set:{username:"lisi"}},(err)=>{
+Profile.update({location:"Lyon"},{$set:{username:"lisi"}},(err)=>{  //change the name of the people live in Lyon to "lisi"
   if (!err){
     console.log("successfully modified")
+  }else{
+    throw err
+  }
+})
+
+// 2 examples of finding
+Profile.find({username:"lisi"},(err,docs)=>{ //find the person whose name is "lisi"
+  if(!err){
+    console.log(docs) //afficher le resultat
+  }else{
+    throw err
+  }
+})
+
+Profile.find({},"_id username sexe location",{skip:2,limit:2},(err,docs)=>{ //skip 2 mess.(skip:2) and show 2 mess.(limit:2)
+  if(!err){
+    console.log(docs)
   }else{
     throw err
   }
