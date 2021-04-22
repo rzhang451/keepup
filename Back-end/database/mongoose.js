@@ -49,3 +49,13 @@ zhangsan.save(function(err,zhangsan){
   if(err) return console.error(err);
   zhangsan.pwd();
 });
+
+//example of deletion
+Profile.remove({username:'zhangsan'},(err)=>{
+  if (!err){
+    console.log("sucessfully deleted!")
+  }else{
+    throw err
+  }
+})
+
