@@ -1,5 +1,6 @@
 // This document involves all database needed.
 
+profile头像，注册绑定？，同时登录限制，forget password
 
 1. Id Profile Database
   #Id Number: Number,
