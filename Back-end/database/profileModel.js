@@ -3,20 +3,23 @@ const mongoose = require('./mongoose');
 const uuid = require('node-uuid');
 //Profile database
 var profileSchema = mongoose.Schema({
-  id:{
+  id: String,
+  username:{
     type:String,
     default: uuid.v1
   },
-  username: String,
+  email: String,
   password: String,
   sexe: String,
   location: String,
   miniIntro: String,
+  Height: Number,
+  Weight: Number,
+  Bmi: Number,
+  totalExerciceDay: Number,
   totalExerciceTime: Number,
   totalExerciceDay: Number,
   totalConsumption: Number,
-  exercice: [String],
-  agenda: [String]
 });
 //Methods
 profileSchema.methods.pwd = function(){
