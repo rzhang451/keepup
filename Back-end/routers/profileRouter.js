@@ -1,3 +1,4 @@
+
 //引入express框架
 const express = require('express');
 //声明跳转路由
@@ -14,25 +15,50 @@ const uuid = require('node-uuid');
 //触发按钮 activities
 //登录 Sign-in
 //前端向后端发送邮箱和密码，后端向前端返回登录信息
-router.get('/sign-in/submit',function(req,res){
+router.post('/sign-in/submit',function(req,res){
   var person = new Profile({
-    email: req.query.email,
-    password: req.query.pwd
+    email: req.body.email,
+    password: req.body.pwd
   });
+  if(!validator.isEmail(email)){
+      return res.json({
+        msg:'邮箱格式不合法,请重新输入',
+        code: 'error2'
+      });'
+  }
+   if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
+      return res.json({
+        msg:'密码不合法,长度在5-12位,请重新输入',
+        code: 'error1'
+      });'
+  }
   //从profile数据库中查询
   Profile.find({email: person.email},(err,docs)=>{
     if(err){
-      return console.error(err);
+      return res.json({
+        msg:'Failed to connect',
+        code: 'error2'
+      });
     }
     if(!docs.length){
       //返回用户不存在
-      res.send('User doesn\'t existe!');
+      return res.json({
+        msg:'User doesn\'t existe!',
+        code: 'error1'
+      });
     }else if(docs[0].password == person.password){
       //返回登录成功,返回用户id
-      res.send('Welcome User: '+ docs[0].id);
+      return res.json({
+        msg:'Welcome',
+        code: 0,
+        info: docs[0].id
+      });
     }else{
       //返回密码错误
-      res.send('Password incorrect!');
+      return res.json({
+        msg:'Password incorrect!',
+        code: 'error2',
+      });
     }
   })
 });
@@ -41,55 +67,92 @@ router.get('/sign-in/submit',function(req,res){
 //发送验证码
 //前端向后端发送邮箱，后端生成验证码发送至邮箱
 var signUpCheck = {};
-router.get('/sign-up/email/:email',function(req,res){
-  var mail = req.params.email;
+router.post('/sign-up/email',function(req,res){
+  var mail = req.body.email;
   var code = parseInt((Math.random(0,1)*0.9+0.1)*10000);
+  if(!validator.isEmail(email)){
+      return res.json({
+        msg:'邮箱格式不合法,请重新输入',
+        code: 'error2'
+      });'
+  }
   Profile.find({email: mail},(err,docs)=>{
     if(!err){
       if(!docs.length){
-        res.send('Email already used!');
+        return res.json({
+          msg: 'Email already used!',
+          code: 'error1'
+        });
       }else{
         signUpCheck[mail]=code;
         email.sendMail(mail,'signup',code,(state)=>{
           if(state){
-            return res.send('Send Code Successful')
+            return res.json({
+              msg:'Send Code Successful',
+              code:'success'
+            });
           }else{
-            return res.send('Send Code Failed')
+            return res.json({
+              msg:'Send Code Failed',
+              code:'error2'
+            });
           }
         });
       }
     }else{
-      return console.error(err);
+      return res.json({
+        msg:console.error(err),
+        code:'error3'
+      });
     }
   })
 });
 //验证验证码
 //前端向后端发送email和验证码，后端返回验证状态
-router.get('/sign-up/code',function(req,res){
-  var mail = req.query.email;
-  var code = req.query.code;
+router.post('/sign-up/code',function(req,res){
+  var mail = req.body.email;
+  var code = req.body.code;
   if(code == signUpCheck[mail]){
-    return res.send('Please Enter Your Password');
+    return res.json({
+      msg:'Please Enter Your Password',
+      code: 'success'
+    });
   }else{
-    return res.send('Authentification Code Incorrect');
+    return res.json({
+      msg:'Authentification Code Incorrect',
+      code:'error'
+    });
   }
 });
 //验证成功后，由注册页面1跳转至注册页面2
 //注册页面2：该页面在显示时，不需要向后端请求资源
 //注册
 //前端向后端发送邮箱和密码，后端返回注册状态和用户id
-router.get('/sign-up/pwd',function(req,res){
+router.post('/sign-up/pwd',function(req,res){
   var user = new Profile({
     id = uuid.v1,
-    email = req.query.email,
-    password = req.query.pwd
+    email = req.body.email,
+    password = req.body.pwd
   });
+  if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
+      return res.json({
+        msg:'密码不合法,长度在5-12位,请重新输入',
+        code: 'error1'
+      });'
+  }
   user.save(function(err,user){
     if(err){
       console.log(err);
-      return res.send('Failed to Save User');
+      return res.json{(
+        msg:'Failed to Save User',
+        code:'error'
+      )};
     }else{
-      return res.send('Welcome User: '+user.id);
+      return res.json({
+        msg:'Welcome',
+        code:'success',
+        info:user.id
+      });
     }
   });
 });
@@ -98,55 +161,91 @@ router.get('/sign-up/pwd',function(req,res){
 //发送验证码
 //前端向后端发送邮箱，后端生成验证码发送至邮箱
 var forgetPwdCheck = {};
-router.get('/forgetpwd/:email',function(req,res){
-  var mail = req.params.email;
+router.post('/forgetpwd',function(req,res){
+  var mail = req.body.email;
   var code = parseInt((Math.random(0,1)*0.9+0.1)*10000);
+  if(!validator.isEmail(email)){
+      return res.json({
+        msg:'邮箱格式不合法,请重新输入',
+        code: 'error2'
+      });'
+  }
   Profile.find({email: mail},(err,docs)=>{
     if(!err){
       if(!docs.length){
         forgetPwdCheck[mail]=code;
         email.sendMail(mail,code,(state)=>{
           if(state){
-            return res.send("Send Code Successful")
+            return res.json({
+              msg:"Send Code Successful",
+              code:'success',
+            });
           }else{
-            return res.send("Send Code Failed")
+            return res.json({
+              msg:"Send Code Failed",
+              code:'error1',
+            });
           }
         });
       }else{
-        res.send("Email doesn't existe!");
+        res.json({
+          msg:"Email doesn't existe!",
+          code:'error2'
+        });
       }
     }else{
-      return console.error(err);
+      return res.json({
+        msg:console.error(err),
+        code:'error3'
+      });
     }
   })
 });
 //验证验证码
 //前端向后端发送email和验证码，后端返回验证状态
-router.get('/forgetpwd/code',function(req,res){
-  var mail = req.query.email;
-  var code = req.query.code;
+router.post('/forgetpwd/code',function(req,res){
+  var mail = req.body.email;
+  var code = req.body.code;
+  if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
+      return res.json({
+        msg:'密码不合法,长度在5-12位,请重新输入',
+        code: 'error1'
+      });'
+  }
   if(code == forgetPwdCheck[email]){
-    return res.send("Please Enter Your New Password")
+    return res.json({
+      msg:"Please Enter Your New Password",
+      code:'success'
+    });
   }else{
-    return res.send("Authentification Code Incorrect")
+    return res.json({
+      msg:"Authentification Code Incorrect",
+      code:'error'
+    });
   }
 });
 //验证成功后，由忘记密码页面跳转至修改密码页面
 //修改密码页面：该页面在显示时，不需要向后端请求资源
 //注册
 //前端向后端发送邮箱和密码，后端返回注册状态和用户id
-router.get('/changepwd',function(req,res){
-  Profile.update({email:req.query.email},{$set:{password:req.query.pwd}},(err)=>{
+router.post('/changepwd',function(req,res){
+  Profile.update({email:req.body.email},{$set:{password:req.body.pwd}},(err)=>{
     if(!err){
       Profile.findOne({email: mail},(err,docs)=>{
         if(err) return console.error(err);
       })
-      return res.send("Password Modified "+ docs.id)
+      return res.json({
+        msg:"Password Modified ",
+        code:'succss',
+        info:docs.id
+      });
     }else{
-      return res.send("problem with modification")
+      return res.json({
+        msg:"problem with modification",
+        code:'error'
+      )
     }
-  })
+  });
 });
-
 module.exports = router;
 
