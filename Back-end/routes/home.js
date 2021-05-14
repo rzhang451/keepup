@@ -1,5 +1,5 @@
 const Profile = require('../model/profileModel');
-const myCourse = require('../model/myCourseModel');
+const MyCourse = require('../model/myCourseModel');
 const Course = require('../model/courseModel');
 
 exports.recommand = (req,res,next)=>{
