@@ -1,6 +1,6 @@
-const Profile = require('../database/profileModel');
-const MyCourse = require('../database/myCourseModel');
-const Course = require('../database/courseModel');
+const Profile = require('../model/profileModel');
+const MyCourse = require('../model/myCourseModel');
+const Course = require('../model/courseModel');
 
 //日程表页面: 该页面在显示时，前端向后端发送用户id，返回今日课程和打卡天数。
 exports.agenda = (req,res,next){
