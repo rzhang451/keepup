@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const fs = require('fs');
 const login = require('./routes/login');
 const home = require('./routes/home');
 const agenda = require('./routes/agenda');
