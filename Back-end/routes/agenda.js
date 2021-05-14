@@ -1,5 +1,3 @@
-const express = require('express');
-const router = express.Router();
 const Profile = require('../database/profileModel');
 const MyCourse = require('../database/myCourseModel');
 const Course = require('../database/courseModel');
