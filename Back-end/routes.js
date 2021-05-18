@@ -13,33 +13,33 @@ const users = require('./routes/users');
 //触发按钮 activities
 //登录 Sign-in
 //前端向后端发送邮箱和密码，后端向前端返回登录信息
-router.post('/sign-in/submit',login.sign-in);
+router.post('/sign-in/submit',login.sign_in);
 //注册 Sign-up -> 跳转至注册页面1
 //注册页面1: 该页面在显示时，不需要向后端请求资源
 //发送验证码
 //前端向后端发送邮箱，后端生成验证码发送至邮箱
-router.post('/sign-up/email',login.sign-up_email);
+router.post('/sign-up/email',login.sign_up_email);
 //验证验证码
 //前端向后端发送email和验证码，后端返回验证状态
-router.post('/sign-up/code',login.sign-up_code);
+router.post('/sign-up/code',login.sign_up_code);
 //验证成功后，由注册页面1跳转至注册页面2
 //注册页面2：该页面在显示时，不需要向后端请求资源
 //注册
 //前端向后端发送邮箱和密码，后端返回注册状态和用户id
-router.post('/sign-up/pwd',login.sign-up_pwd);
+router.post('/sign-up/pwd',login.sign_up_pwd);
 //忘记密码 Forget Password -> 跳转至忘记密码页面
 //忘记密码页面:该页面在显示时，不需要向后端请求资源
 //发送验证码
 //前端向后端发送邮箱，后端生成验证码发送至邮箱
-router.post('/forgetpwd/email',login.forget-pwd_emal);
+router.post('/forgetpwd/email',login.forget_pwd_email);
 //验证验证码
 //前端向后端发送email和验证码，后端返回验证状态
-router.post('/forgetpwd/code',login.forget-pwd_code);
+router.post('/forgetpwd/code',login.forget_pwd_code);
 //验证成功后，由忘记密码页面跳转至修改密码页面
 //修改密码页面：该页面在显示时，不需要向后端请求资源
 //注册
 //前端向后端发送邮箱和密码，后端返回注册状态和用户id
-router.post('/forgetpwd/pwd',login.forget-pwd_pwd);
+router.post('/forgetpwd/pwd',login.forget_pwd_pwd);
 
 //***************************
 //主页: 该页面在显示时，前端向后端发送用户id，后端返回推荐的和已收藏的课程
