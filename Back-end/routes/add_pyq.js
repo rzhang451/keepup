@@ -18,11 +18,11 @@ exports.add_pyq = (req,res,next)=>{
     }else{
       var diary = new Media ({
         id:uuid.v1,
-        usr:req.usr,
-        usr_id:req.usr_id,
-        content:req.content,
-        pic:req.pic,
-        video:req.video,
+        usr:req.body.usr,
+        usr_id:req.body.usr_id,
+        content:req.body.content,
+        pic:req.body.pic,
+        video:req.body.video,
         date:Date(),
         comment: NULL,
         like:0
