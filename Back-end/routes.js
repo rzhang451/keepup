@@ -107,4 +107,7 @@ router.get('/media/showposts_self/:id',affiche_pyq_self.affiche_pyq_self);
 //show other users' profile
 router.get('/media/showothers/:id',show_otherProfile.user);
 
+//find courses and users
+router.get('/search',search.search);
+
 module.exports = router;
