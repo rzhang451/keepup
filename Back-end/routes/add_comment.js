@@ -20,7 +20,7 @@ exports.add_comment = (req,res,next)=>{
       var comment_usr = req.body.usr;
       var comment_content = req.body.content;
       var comment_date = Date();
-      comment.add(comment_usr,comment_content);
+      comment.add(comment_usr,comment_content,comment_date);
     }
   })
 }
