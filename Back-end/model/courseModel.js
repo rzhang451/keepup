@@ -2,11 +2,11 @@
 const mongoose = require('./mongoose');
 //Profile database
 var courseSchema = mongoose.Schema({
-  id: Number,
+  id: String,
   name: String,
   duration: Number,
   type: String,
-  difficulty: Number,
+  difficulty: Number, //(1-easy, 2-medium 3-difficult)
   goal: String
 });
 //Model
