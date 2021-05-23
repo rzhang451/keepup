@@ -7,6 +7,10 @@ const home = require('./routes/home');
 const agenda = require('./routes/agenda');
 const media = require('./routes/media');
 const users = require('./routes/users'); 
+const { add_pyq } = require('./routes/add_pyq');
+const { add_comment } = require('./routes/add_comment');
+const { affiche_pyq_follow } = require('./routes/affiche_pyq_follow');
+const { affiche_pyq_self } = require('./routes/affiche_pyq_self');
 //*******************************************
 //登录页面：该页面在显示时，不需要向后端请求资源
 
@@ -91,5 +95,16 @@ router.post('/profile/changepwd',users.change_pwd);
 //修改身高体重
 router.post('/profile/health',users.change_health);
 
+
+//write and share in media
+router.post('/media/post',add_pyq.add_pyq);
+//write comment
+router.post('/media/comment',add_comment.add_comment);
+//show the posts of the people followed by a user
+router.get('/media/showposts_follow',affiche_pyq_follow.affiche_pyq_follow);
+//show user's own posts
+router.get('/media/showposts_self',affiche_pyq_self,affiche_pyq_self);
+//show other users' profile
+router.get('/media/showothers',show_otherProfile.user);
 
 module.exports = router;
