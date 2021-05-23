@@ -7,7 +7,8 @@ var courseSchema = mongoose.Schema({
   duration: Number,
   type: String,
   difficulty: Number, //(1-easy, 2-medium 3-difficult)
-  goal: String
+  goal: String,
+  way:String
 });
 //Model
 module.exports = mongoose.model('Course',profileSchema);
