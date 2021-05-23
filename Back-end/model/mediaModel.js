@@ -15,7 +15,8 @@ var mediaShema = mongoose.Schema({
   date:String,
   comment:[{
     usr:String,
-    content:String
+    content:String,
+    Comment_date:String
   }],
   like:{
     type:Number,
