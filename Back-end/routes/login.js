@@ -134,7 +134,7 @@ exports.sign_up_pwd = (req,res,next)=>{
       return res.json({
         msg:'Failed to Save User',
         code:'error3'
-      )};
+      });
     }else{
       res.session.usr = usr.id;
       return res.json({
@@ -154,7 +154,7 @@ exports.forget_pwd = (req,res,next)=>{
       return res.json({
         msg:'Email Invalide!',
         code: 'error1'
-      });'
+      });
   }
   Profile.find({email: mail},(err,docs)=>{
     if(!err){
@@ -189,14 +189,14 @@ exports.forget_pwd = (req,res,next)=>{
   next();
 }
 
-exports.forget_pwd_code = (req,res,next){
+exports.forget_pwd_code = (req,res,next)=>{
   var mail = req.body.email;
   var code = req.body.code;
   if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
       return res.json({
         msg:'Password Invalide,the length should be between 6 and 12, please enter again',
         code: 'error1'
-      });'
+      });
   }
   if(code == forgetPwdCheck[email]){
     return res.json({
@@ -228,7 +228,7 @@ exports.forget_pwd_pwd=(req,res,next)=>{
       return res.json({
         msg:"problem with modification",
         code:'error'
-      )
+      });
     }
   });
   next();
