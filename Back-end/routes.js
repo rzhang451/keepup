@@ -103,7 +103,7 @@ router.post('/media/comment',add_comment.add_comment);
 //show the posts of the people followed by a user
 router.get('/media/showposts_follow',affiche_pyq_follow.affiche_pyq_follow);
 //show user's own posts
-router.get('/media/showposts_self',affiche_pyq_self,affiche_pyq_self);
+router.get('/media/showposts_self',affiche_pyq_self.affiche_pyq_self);
 //show other users' profile
 router.get('/media/showothers',show_otherProfile.user);
 
