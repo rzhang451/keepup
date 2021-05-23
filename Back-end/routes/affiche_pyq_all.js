@@ -1,8 +1,8 @@
-const Follow=require('../model/followModel');
+const Profile=require('../model/profileModel');
 const Media=require('../model/mediaModel');
 
-exports.affiche_pyq_follow=(req,res,next)=>{
-  Follow.findOne({id:req.params.id},(err,docs)=>{
+exports.affiche_pyq_all=(req,res,next)=>{
+  Profile.find({},(err,docs)=>{
     if(err){
       return res.json({
         msg:'failed to connect',
@@ -14,16 +14,16 @@ exports.affiche_pyq_follow=(req,res,next)=>{
         msg:'Cannot find user',
         code:'error'
       });
-    }
-    var follow={
-      follow:docs.follow,
-      follower:docs.follower,
-    };
-    var info = [] ;
+    })
+    var ids = [];
     var i;
+    for(i=0;i<docs.length;i++){
+      ids[i].append(docs.id);
+    }
     var j;
-    for(i=0;i<follow[follow].length;i++){
-      Media.find({id:follow[follow][i]},(err,actus)=>{
+    var info = [];
+    for(j=0;j<docs.length;j++){
+      Media.find({id:ids[j]},(err,actus)=>{
         if(err){
           return res.json({
             msg:'Failed to connect',
@@ -37,11 +37,11 @@ exports.affiche_pyq_follow=(req,res,next)=>{
       });
     }
     return res.json({
-      msg:'Follower media is returned',
+      msg:'All media is returned',
       code:'success',
-      follow:follow[follow],
+      profile:profile,
       info:info
     });
   next();
-  });
+}
 }

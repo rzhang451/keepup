@@ -36,7 +36,7 @@ exports.affiche_pyq_self=(req,res,next)=>{
       }
     });
     return res.json({
-      msg:'Profile is returned',
+      msg:'Personal media is returned',
       code:'success',
       profile:profile,
       info:info
