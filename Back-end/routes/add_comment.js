@@ -21,3 +21,5 @@ exports.add_comment = (req,res,next)=>{
       var comment_content = req.body.content;
       comment.add(comment_usr,comment_content);
     }
+  })
+}

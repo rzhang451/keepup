@@ -42,7 +42,7 @@ exports.check = (req,res,next)=>{
   var course = req.query.course;
   var usr = req.query.usr;
   var day = new Date();
-  var date = day.getDate()+'/'+day.getMonth()+1+'/'day.getFullYear();
+  var date = day.getDate()+'/'+day.getMonth()+1+'/'+day.getFullYear();
   var person = new Profile;
   Profile.findOnt({id:usr},(err,docs)=>{
     if(err){
@@ -123,7 +123,7 @@ exports.profile = (req,res,next)=>{
 }
 
 exports.follower = (req,res,next)=>{
-  Profile.findOne({id:req,params.id},(err,docs)=>{
+  Profile.findOne({id:req.params.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -146,7 +146,7 @@ exports.follower = (req,res,next)=>{
 }
 
 exports.subscribe = (req,res,next)=>{
-  Profile.findOne({id:req,params.id},(err,docs)=>{
+  Profile.findOne({id:req.params.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -224,7 +224,7 @@ exports.change_pwd = (req,res)=>{
   });
 }
 
-exports.change_health = (req,res){
+exports.change_health = (req,res)=>{
   Profile.update({id:req.body.id},{$set:{Height = req.body.height,
                                          Weight = req.body.weight,
                                          Bmi = req.body.bmi,}},(err)=>{

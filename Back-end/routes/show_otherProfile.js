@@ -16,19 +16,20 @@ exports.user = (req,res,next)=>{
         code: 'error'
       });
     }
+  })
   Follow.findOne({id:req.params.id},(err,files)=>{
-      if(err){
-        return res.json({
-          msg:'Failed to connect',
-          code: 'error'
-        });
-      }
-      if(!files){
-        return res.json({
-          msg:'Username incorrect!',
-          code: 'error'
-        });
-      }
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: 'error'
+      });
+    }
+    if(!files){
+      return res.json({
+        msg:'Username incorrect!',
+        code: 'error'
+      });
+    }
     var profile = {
       username: docs.username,
       sex: docs.sex,
