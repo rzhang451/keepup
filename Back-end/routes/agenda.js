@@ -3,7 +3,7 @@ const MyCourse = require('../model/myCourseModel');
 const Course = require('../model/courseModel');
 
 //日程表页面: 该页面在显示时，前端向后端发送用户id，返回今日课程和打卡天数。
-exports.agenda = (req,res,next){
+exports.agenda = (req,res,next)=>{
   var courseList = [];
   Profile.find({id: req.params.id},(err,docs)=>{
     if(err){
@@ -62,8 +62,9 @@ exports.agenda = (req,res,next){
        }
      });
    }
-   return res.json({
+    return res.json({
      plan: courseList,
      totalExerciceDay: docs[0].totalExerciceDay,
+    });
   })
 }

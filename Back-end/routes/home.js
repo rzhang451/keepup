@@ -12,7 +12,7 @@ exports.recommand = (req,res,next)=>{
   }
   var person = new Profile;
   var course = {};
-  }
+  
   Profile.find({id:req.params.id},(err,docs)=>{
     if(err){
       return res.json({
