@@ -11,6 +11,7 @@ const { add_comment } = require('./routes/add_comment');
 const { affiche_pyq_follow } = require('./routes/affiche_pyq_follow');
 const { affiche_pyq_self } = require('./routes/affiche_pyq_self');
 const search = require('./routes/search');
+const show_otherProfile = require('./routes/show_otherProfile');
 //*******************************************
 //登录页面：该页面在显示时，不需要向后端请求资源
 
