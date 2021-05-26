@@ -5,12 +5,12 @@ const fs = require('fs');
 const login = require('./routes/login');
 const home = require('./routes/home');
 const agenda = require('./routes/agenda');
-const media = require('./routes/media');
 const users = require('./routes/users'); 
 const { add_pyq } = require('./routes/add_pyq');
 const { add_comment } = require('./routes/add_comment');
 const { affiche_pyq_follow } = require('./routes/affiche_pyq_follow');
 const { affiche_pyq_self } = require('./routes/affiche_pyq_self');
+const search = require('./routes/search');
 //*******************************************
 //登录页面：该页面在显示时，不需要向后端请求资源
 
