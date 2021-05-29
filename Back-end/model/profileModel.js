@@ -20,6 +20,7 @@ var profileSchema = mongoose.Schema({
   totalExerciceTime: Number,
   totalExerciceDay: Number,
   totalConsumption: Number,
+  favor_course:[String]
 });
 //Methods
 profileSchema.methods.pwd = function(){
