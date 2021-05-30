@@ -20,7 +20,8 @@ var mediaShema = mongoose.Schema({
   like:{
     type:Number,
     default:0
-  }
+  },
+  like_usr:[String]
 });
 
 module.exports = mongoose.model('Media',mediaSchema);
