@@ -22,12 +22,6 @@ var profileSchema = mongoose.Schema({
   totalConsumption: Number,
   favor_course:[String]
 });
-//Methods
-profileSchema.methods.pwd = function(){
-  var forgetpwd = this.password
-    ? "The password is " + this.password
-    : "error";
-  console.log(forgetpwd);
-}
+
 //Model
 module.exports = mongoose.model('Profile',profileSchema);
