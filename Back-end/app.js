@@ -9,6 +9,7 @@ const bodyParser = require('body-parser');
 const cookie = require('cookie-parser');
 //引入session组件
 const session = require('express-session');
+const path = require('path');
 //引入routes路由接口
 const routes = require('./routes');
 
@@ -23,36 +24,10 @@ app.all('*',function(req,res,next){
   next();
 })
 
-app.get('/get',(req,res)=>{
-  console.log('hello');
-  console.log(req.query.username);
-  return res.json({
-    msg:'successfully received get',
-    code:'200',
-    info:[{
-      name:"World",
-      hobby:"Nice to meet you"
-    }]
-  })
-});
-
-app.post('/post',(req,res)=>{
-  console.log('Hello');
-  console.log(req.body[username]);
-  return res.json({
-    msg:'successfully received post',
-    code:'200',
-    info:{
-      name:"World",
-      hobby:"Nice to meet you"
-    }
-  })
-});
-
 //初始化cookie和session
-app.use(cookie());
+app.use(cookie('session'));
 app.use(session({
-  secret:'keepUp0513',
+  secret:'keepUp',
   resave:false,
   saveUninitialized:true,
   cookie:{
@@ -64,5 +39,6 @@ app.use(session({
 
 //调用静态资源
 app.use(express.static('public'));
+app.use('/',routes);
 
 module.exports = app;
