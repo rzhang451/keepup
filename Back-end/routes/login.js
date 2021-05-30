@@ -1,10 +1,12 @@
 const email = require('../funcs/nodemailer');
 const validator = require('validator');
-const uuid = require('node-uuid');;
+const uuid = require('node-uuid');
+const session = require('express-session');
+const Profile = require('../model/profileModel');
 
 var signUpCheck = {};
 var forgetPwdCheck = {};
-exports.sign_in = (req,res,next)=>{
+exports.sign_in = (req,res)=>{
   //假如已经登录
   if(req.session.usr){
     return res.json({
@@ -45,16 +47,15 @@ exports.sign_in = (req,res,next)=>{
       });
     } 
   })
-  next();
 } 
 
-exports.sign_up_email = (req,res,next)=>{
+exports.sign_up_email = (req,res)=>{
   var mail = req.body.email;
   var code = parseInt((Math.random(0,1)*0.9+0.1)*10000);
   if(!validator.isEmail(email)){
       return res.json({
         msg:'This is not a email!',
-        code: -1
+        code: '-1'
       });
   }   
   Profile.find({email: mail},(err,docs)=>{
@@ -62,11 +63,11 @@ exports.sign_up_email = (req,res,next)=>{
       if(docs.length){
         return res.json({
           msg: 'Email already used!',
-          code: -1
+          code: '-1'
         });
       }else{
-        signUpCheck[mail]=code;
         email.sendMail(mail,'signup',code,(state)=>{
+          signUpCheck[mail]=code;
           if(state){
             console.log('已发送');
             return res.json({
@@ -77,54 +78,53 @@ exports.sign_up_email = (req,res,next)=>{
             console.log('发送失败');
             return res.json({
               msg:'Send Code Failed',
-              code:-1
+              code:'-1'
             });
           } 
         });
       } 
     }else{
       return res.json({
-        msg:console.error(err),
-        code:-1
+        msg:'Connection Failed',
+        code: '-1'
       });
     } 
   })
-  next();
 } 
 
 
-exports.sign_up_code = (req,res,next)=>{
+exports.sign_up_code = (req,res)=>{
   var mail = req.body.email;
   var code = req.body.code;
   if(code == signUpCheck[mail]){
     return res.json({
       msg:'Please Enter Your Password',
-      code: 'success'
+      code: '200'
     });
   }else{
     return res.json({
       msg:'Authentification Code Incorrect',
-      code:'error'
+      code:'-1'
     });
   }
-  next();
 }
 
-exports.sign_up_pwd = (req,res,next)=>{
+exports.sign_up_pwd = (req,res)=>{
   if(req.body.pwd!=req.body.check){
     return res.json({
       msg:'passwords are not the same!',
-      code:'error1'
+      code:'-1'
     })
   }
   if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
       return res.json({
         msg:'Password Invalide,the length should be between 6 and 12, please enter again',
-        code: 'error2'
+        code: '-1'
       });
   }
+  var usr_id = uuid.v1;
   var user = new Profile({
-    id: uuid.v1,
+    id: usr_id,
     email: req.body.email,
     password: req.body.pwd
   });
@@ -133,86 +133,91 @@ exports.sign_up_pwd = (req,res,next)=>{
       console.log(err);
       return res.json({
         msg:'Failed to Save User',
-        code:'error3'
+        code:'-1'
       });
     }else{
       res.session.usr = usr.id;
       return res.json({
         msg:'Welcome',
-        code:'success',
-        data:user.id
+        code:'200',
+        data:[{
+          id:user.id
+        }]
       });
     }
   });
-  next();
 }
 
-exports.forget_pwd = (req,res,next)=>{
+exports.forget_pwd_email = (req,res)=>{
   var mail = req.body.email;
   var code = parseInt((Math.random(0,1)*0.9+0.1)*10000);
   if(!validator.isEmail(mail)){
       return res.json({
         msg:'Email Invalide!',
-        code: 'error1'
+        code: '-1'
       });
   }
   Profile.find({email: mail},(err,docs)=>{
     if(!err){
       if(!docs.length){
-        forgetPwdCheck[mail]=code;
         email.sendMail(mail,code,(state)=>{
-          if(state){
+          if(state){        
+            forgetPwdCheck[mail]=code;
             return res.json({
               msg:"Send Code Successful",
-              code:'success',
+              code:'200',
             });
           }else{
             return res.json({
               msg:"Send Code Failed",
-              code:'error2',
+              code:'201',
             });
           }
         });
       }else{
         res.json({
           msg:"Email doesn't existe!",
-          code:'error3'
+          code:'202'
         });
       }
     }else{
       return res.json({
-        msg:console.error(err),
-        code:'error4'
+        msg:'Failed to Connect',
+        code:'-1'
       });
     }
   })
-  next();
 }
 
-exports.forget_pwd_code = (req,res,next)=>{
+exports.forget_pwd_code = (req,res)=>{
   var mail = req.body.email;
   var code = req.body.code;
-  if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
-      return res.json({
-        msg:'Password Invalide,the length should be between 6 and 12, please enter again',
-        code: 'error1'
-      });
-  }
   if(code == forgetPwdCheck[email]){
     return res.json({
       msg:"Please Enter Your New Password",
-      code:'success'
+      code:'200'
     });
   }else{
     return res.json({
       msg:"Authentification Code Incorrect",
-      code:'error2'
+      code:'201'
     });
   }
-  next();
 }
 
-exports.forget_pwd_pwd=(req,res,next)=>{
+exports.forget_pwd_pwd=(req,res)=>{
+  if(req.body.pwd!=req.body.check){
+    return res.json({
+      msg:'passwords are not the same!',
+      code:'-1'
+    })
+  }
+  if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
+      return res.json({
+        msg:'Password Invalide,the length should be between 6 and 12, please enter again',
+        code: '-1'
+      });
+  }
   Profile.update({email:req.body.email},{$set:{password:req.body.pwd}},(err)=>{
     if(!err){
       Profile.findOne({email: mail},(err,docs)=>{
@@ -221,17 +226,16 @@ exports.forget_pwd_pwd=(req,res,next)=>{
       })
       return res.json({
         msg:"Password Modified ",
-        code:'succss',
+        code:'200',
         info:docs.id
       });
     }else{
       return res.json({
         msg:"problem with modification",
-        code:'error'
+        code:'-1'
       });
     }
   });
-  next();
 }
 
 
