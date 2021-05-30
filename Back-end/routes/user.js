@@ -224,6 +224,7 @@ exports.change_pwd = (req,res)=>{
   });
 }
 
+
 exports.change_health = (req,res)=>{
   Profile.update({id:req.body.id},{$set:{Height = req.body.height,
                                          Weight = req.body.weight,
@@ -240,4 +241,32 @@ exports.change_health = (req,res)=>{
       })
     }
   });
+}
+
+
+//add new favor course
+exports.favor_course = (req,res)=>{
+  Profile.find({id: req.body.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: '-1'
+      });
+      if(!docs.length){
+      //返回user不存在
+        return res.json({
+          msg:'User doesn\'t existe',
+          code: '-1'
+        });
+      }
+    }else{
+     //add new favor course
+      var course_id = req.body.id;
+      favor_course.add(course_id);
+      return res.json({
+        msg:'favor course is added',
+        code: '200'
+      });
+    }
+  })
 }
