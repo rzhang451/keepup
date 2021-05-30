@@ -11,6 +11,7 @@ var profileSchema = mongoose.Schema({
   email: String,
   password: String,
   sexe: String,
+  avatar: String,
   location: String,
   miniIntro: String,
   Height: Number,
