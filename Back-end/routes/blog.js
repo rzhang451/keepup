@@ -268,3 +268,44 @@ exports.show_otherProfile = (req,res,next)=>{
   });
   next();
 }
+
+exports.add_follow = (req,res,next)=>{
+  Profile.find({id: req.body.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: 'error'
+      });
+      if(!docs.length){
+      //返回用户不存在
+        return res.json({
+          msg:'User doesn\'t existe',
+          code: 'error'
+        });
+      }
+    }else{
+     //add new follow
+      var follow_id = req.body.id;
+      follow.add(follow_id);
+      Profile.find({id: follow_id},(err,docs)=>{
+        if(err){
+          return res.json({
+            msg:'Failed to connect',
+            code: 'error'
+          });
+          if(!docs.length){
+          //返回用户不存在
+            return res.json({
+              msg:'User doesn\'t existe',
+              code: 'error'
+            });
+          }
+        }else{
+         //add new Follower
+          follower.add(docs[0].id);
+        }
+      })
+    }
+  })
+}
+
