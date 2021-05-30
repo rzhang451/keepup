@@ -3,18 +3,18 @@ const Course = require('../model/courseModel');
 const Media = require('../model/mediaModel');
 const Follow=require('../model/followModel');
 
-exports.add_blog = (req,res,next)=>{
+exports.add_blog = (req,res)=>{
   Profile.find({id: req.params.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
       if(!docs.length){
       //返回用户不存在
         return res.json({
           msg:'User doesn\'t existe',
-          code: 'error'
+          code: '-1'
         });
       }
     }else{
@@ -33,18 +33,17 @@ exports.add_blog = (req,res,next)=>{
           console.log(err);
           return res.json({
             msg:'Failed to Save the Diary',
-            code:'error3'
+            code:'-1'
           });
         }else{
           res.session.usr = diary.id;
           return res.json({
-            msg:'Welcome',
-            code:'success',
-            data:diary.id
+            msg:'diary is added',
+            code:'200',
           });
         }
       });
-      next();
+
     }
   })
 }
@@ -54,13 +53,13 @@ exports.add_comment = (req,res,next)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
       if(!docs.length){
       //返回动态不存在
         return res.json({
           msg:'Diary doesn\'t existe',
-          code: 'error'
+          code: '-1'
         });
       }
     }else{
@@ -69,6 +68,10 @@ exports.add_comment = (req,res,next)=>{
       var comment_content = req.body.content;
       var comment_date = Date();
       comment.add(comment_usr,comment_content,comment_date);
+      return res.json({
+        msg:'comment is added',
+        code:'200'
+      });
     }
   })
 }
@@ -78,13 +81,13 @@ exports.show_blog_self=(req,res,next)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Username incorrect!',
-        code: 'error'
+        code: '-1'
       });
     }
     var profile = {
@@ -98,7 +101,7 @@ exports.show_blog_self=(req,res,next)=>{
       if(err){
         return res.json({
           msg:'Failed to connect',
-          code: 'error'
+          code: '-1'
         });
       }
       var i=0;
@@ -109,7 +112,7 @@ exports.show_blog_self=(req,res,next)=>{
     });
     return res.json({
       msg:'Personal media is returned',
-      code:'success',
+      code:'200',
       profile:profile,
       info:info
     });
@@ -122,13 +125,13 @@ exports.show_blog_follow=(req,res,next)=>{
     if(err){
       return res.json({
         msg:'failed to connect',
-        code:'error'
+        code:'-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Cannot find user',
-        code:'error'
+        code:'-1'
       });
     }
     var follow={
@@ -143,7 +146,7 @@ exports.show_blog_follow=(req,res,next)=>{
         if(err){
           return res.json({
             msg:'Failed to connect',
-            code: 'error'
+            code: '-1'
           });
         }
         while(j<actus.length){
@@ -154,7 +157,7 @@ exports.show_blog_follow=(req,res,next)=>{
     }
     return res.json({
       msg:'Follower media is returned',
-      code:'success',
+      code:'200',
       follow:follow[follow],
       info:info
     });
@@ -167,13 +170,13 @@ exports.show_blog_all=(req,res,next)=>{
     if(err){
       return res.json({
         msg:'failed to connect',
-        code:'error'
+        code:'-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Cannot find user',
-        code:'error'
+        code:'-1'
       });
     }
     var ids = [];
@@ -188,7 +191,7 @@ exports.show_blog_all=(req,res,next)=>{
         if(err){
           return res.json({
             msg:'Failed to connect',
-            code: 'error'
+            code: '-1'
           });
         }
         while(j<actus.length){
@@ -199,7 +202,7 @@ exports.show_blog_all=(req,res,next)=>{
     }
     return res.json({
       msg:'All media is returned',
-      code:'success',
+      code:'200',
       profile:profile,
       info:info
     });
@@ -212,13 +215,13 @@ exports.show_otherProfile = (req,res,next)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Username incorrect!',
-        code: 'error'
+        code: '-1'
       });
     }
   })
@@ -226,13 +229,13 @@ exports.show_otherProfile = (req,res,next)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!files){
       return res.json({
         msg:'Username incorrect!',
-        code: 'error'
+        code: '-1'
       });
     }
     var profile = {
@@ -250,7 +253,7 @@ exports.show_otherProfile = (req,res,next)=>{
       if(err){
         return res.json({
           msg:'Failed to connect',
-          code: 'error'
+          code: '-1'
         });
       }
       var i=0;
@@ -261,7 +264,7 @@ exports.show_otherProfile = (req,res,next)=>{
     });
     return res.json({
       msg:'Profile is returned',
-      code:'success',
+      code:'200',
       profile:profile,
       info:info
     });
@@ -269,42 +272,79 @@ exports.show_otherProfile = (req,res,next)=>{
   next();
 }
 
-exports.add_follow = (req,res,next)=>{
+exports.add_follow = (req,res)=>{
   Profile.find({id: req.body.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
       if(!docs.length){
       //返回用户不存在
         return res.json({
           msg:'User doesn\'t existe',
-          code: 'error'
+          code: '-1'
         });
       }
     }else{
      //add new follow
       var follow_id = req.body.id;
       follow.add(follow_id);
+      return res.json({
+        msg:'follow is added',
+        code:'200'
+      });
       Profile.find({id: follow_id},(err,docs)=>{
         if(err){
           return res.json({
             msg:'Failed to connect',
-            code: 'error'
+            code: '-1'
           });
           if(!docs.length){
           //返回用户不存在
             return res.json({
               msg:'User doesn\'t existe',
-              code: 'error'
+              code: '-1'
             });
           }
         }else{
          //add new Follower
           follower.add(docs[0].id);
+          return res.json({
+            msg:'follower is added',
+            code:'200'
+          });
+
         }
       })
+    }
+  })
+}
+
+//function thumb up
+exports.thumb_up = (req,res)=>{
+  Media.find({id: req.body.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: '-1'
+      });
+      if(!docs.length){
+      //返回动态不存在
+        return res.json({
+          msg:'Diary doesn\'t existe',
+          code: '-1'
+        });
+      }
+    }else{
+     //add person who thumnbed up the post
+      var person_thumbup = req.body.id;
+      docs[0].like_usr.append(person_thumbup);
+      docs[0].like+=1;
+      return res.json({
+        msg:'person who thumbed up is added',
+        code:'200'
+      });
     }
   })
 }
