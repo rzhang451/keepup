@@ -22,7 +22,6 @@ exports.add_pyq = (req,res,next)=>{
         usr_id:req.body.usr_id,
         content:req.body.content,
         pic:req.body.pic,
-        video:req.body.video,
         date:Date(),
         comment: NULL,
         like:0
