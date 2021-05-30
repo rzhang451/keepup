@@ -2,16 +2,21 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const fs = require('fs');
+const gm = require('gm');
+const uploadAvatar = multer({dest:__dirname + '/public/upload/image/profile'});
+const uploadMedia = multer({dest:__dirname + '/public/upload/image/social'});
 const login = require('./routes/login');
 const home = require('./routes/home');
 const agenda = require('./routes/agenda');
 const users = require('./routes/users'); 
+//const media = require('./routes/media');
 const { add_pyq } = require('./routes/add_pyq');
 const { add_comment } = require('./routes/add_comment');
 const { affiche_pyq_follow } = require('./routes/affiche_pyq_follow');
 const { affiche_pyq_self } = require('./routes/affiche_pyq_self');
+const show_ortherProfile = require('./routes/show_otherProfile');
 const search = require('./routes/search');
-const show_otherProfile = require('./routes/show_otherProfile');
+
 //*******************************************
 //登录页面：该页面在显示时，不需要向后端请求资源
 
@@ -64,6 +69,10 @@ router.post('/search/global/:key',home.global_search);
 
 //条件搜索 conditional search
 router.post('/search/condition',home.conditional_search);
+//find courses
+router.get('/search/search_course',search.search_course);
+//find users
+router.get('/search/search_user',search.search_user);
 
 //***************************
 //agenda
@@ -73,6 +82,18 @@ router.get('/agenda/:id',agenda.agenda);
 //social media
 //看他人的个人主页
 router.get('/profile/user/:id',media.user);
+//添加到关注
+router.get('/media/subscribe/add/:id',media.subscribe);
+//write and share in media
+router.post('/media/post',add_pyq.add_pyq);
+//write comment
+router.post('/media/comment',add_comment.add_comment);
+//show the posts of the people followed by a user
+router.get('/media/showposts_follow/:id',affiche_pyq_follow.affiche_pyq_follow);
+//show user's own posts
+router.get('/media/showposts_self/:id',affiche_pyq_self.affiche_pyq_self);
+//show other users' profile
+router.get('/media/showothers/:id',show_otherProfile.user);
 
 //***************************
 router.get('/public/image/*',users.image);
@@ -88,29 +109,12 @@ router.get('profile/follower/:id',users.follower);
 //根据用户id查看已关注到人
 router.get('profile/subscribe/:id',users.subscribe);
 //更改头像
-router.post('profile/upload/',users.avatar);
+router.post('profile/avatar/upload', uploadAvatar.single('photo'),users.avatar);
 //修改用户名/性别/地点/个人简介
 router.post('profile/change',users.change_profile);
 //修改密码
 router.post('/profile/changepwd',users.change_pwd);
 //修改身高体重
 router.post('/profile/health',users.change_health);
-
-
-//write and share in media
-router.post('/media/post',add_pyq.add_pyq);
-//write comment
-router.post('/media/comment',add_comment.add_comment);
-//show the posts of the people followed by a user
-router.get('/media/showposts_follow/:id',affiche_pyq_follow.affiche_pyq_follow);
-//show user's own posts
-router.get('/media/showposts_self/:id',affiche_pyq_self.affiche_pyq_self);
-//show other users' profile
-router.get('/media/showothers/:id',show_otherProfile.user);
-
-//find courses
-router.get('/search/search_course',search.search_course);
-//find users
-router.get('/search/search_user',search.search_user);
 
 module.exports = router;
