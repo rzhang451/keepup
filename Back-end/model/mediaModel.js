@@ -11,7 +11,6 @@ var mediaShema = mongoose.Schema({
   usr_id:String,
   content:String,
   pic:[String],
-  video:[String],
   date:String,
   comment:[{
     usr:String,
