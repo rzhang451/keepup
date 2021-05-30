@@ -337,7 +337,7 @@ exports.thumb_up = (req,res)=>{
         });
       }
     }else{
-     //add person who thumnbed up the post
+     //add person who thumbed up the post
       var person_thumbup = req.body.id;
       docs[0].like_usr.append(person_thumbup);
       docs[0].like+=1;
