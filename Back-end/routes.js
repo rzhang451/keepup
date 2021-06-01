@@ -98,25 +98,28 @@ router.get('/media/showothers/:id',media.show_blog_all);
 router.post('/media/thumb_up',media.thumb_up);
 
 //***************************
-router.get('/public/image/*',users.image);
-router.get('/public/video/*',users.video);
-router.get('/course/info/:id',users.info);
+router.get('/public/image/*',user.image);
+
+router.get('/course/info/:id',user.info);
 //运动结束后记录
-router.get('/course/check',users.check);
+router.get('/course/check',user.check);
 
 //加载个人主页
 router.get('/profile/:id',user.profile);
 //根据用户id查看follower
-router.get('profile/follower/:id',users.follower);
+router.get('profile/follower/:id',user.follower);
 //根据用户id查看已关注到人
-router.get('profile/subscribe/:id',users.subscribe);
+router.get('profile/subscribe/:id',user.subscribe);
 //更改头像
-router.post('profile/avatar/upload', uploadAvatar.single('photo'),users.avatar);
+router.post('profile/avatar/upload', uploadAvatar.single('photo'),user.avatar);
 //修改用户名/性别/地点/个人简介
-router.post('profile/change',users.change_profile);
+router.post('profile/change',user.change_profile);
 //修改密码
-router.post('/profile/changepwd',users.change_pwd);
+router.post('/profile/changepwd',user.change_pwd);
 //修改身高体重
-router.post('/profile/health',users.change_health);
+router.post('/profile/health',user.change_health);
+//返回视频信息
+router.get('course/name',user.video);
+
 
 module.exports = router;
