@@ -10,9 +10,30 @@ exports.image = (req,res,next)=>{
 }
 
 exports.video = (req,res,next)=>{
-  var filePath = path.resolve('./'+req.url);
-    res.sendFile( filePath );
-    console.log("Request for " + req.url + " received.");
+  /*var filePath = path.resolve('./'+req.url);
+    res.sendFile( filePath );*/
+    
+  Course.find({name:req.body.name},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to fetch video',
+        code: '-1'
+      });
+    }
+    else{
+      console.log("Request for " + req.url + " received.");
+      return res.json({
+        id:docs.id,
+        name:docs.name,
+        duration:docs.duration,
+        type:docs.type,
+        difficulty:docs.difficulty,
+        goal:docs.goal,
+        way:docs.way
+      });
+    }
+  });
+
 }
 
 exports.info = (req,res,next)=>{
@@ -224,7 +245,6 @@ exports.change_pwd = (req,res)=>{
   });
 }
 
-
 exports.change_health = (req,res)=>{
   Profile.update({id:req.body.id},{$set:{Height = req.body.height,
                                          Weight = req.body.weight,
@@ -242,7 +262,6 @@ exports.change_health = (req,res)=>{
     }
   });
 }
-
 
 //add new favor course
 exports.favor_course = (req,res)=>{
