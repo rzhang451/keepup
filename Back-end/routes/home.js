@@ -91,3 +91,40 @@ exports.favorite = (req,res,next)=>{
   });
   next();
 }
+
+exports.avatar = (req,res)=>{
+  Profile.find({id: req.body.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: '-1'
+      });
+      if(!docs.length){
+      //返回用户不存在
+        return res.json({
+          msg:'Profile doesn\'t existe',
+          code: '-1'
+        });
+      }
+    }else{
+      //upload avatar
+      var storage = multer.diskStorage({
+        destination:path.resolve(__dirname,'../public/upload/image/profile'),
+        filename:function(req,file,cb){
+        let extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
+        let filename = docs[0].username + Date.now()
+        cb(null,filename + extName)
+        }
+      })
+
+      var imageUploader = multer({
+        storage:storage
+      })
+
+      return res.json({
+      msg:'avatar is uploaded',
+      code:'200'
+      });
+    }
+  })
+}
