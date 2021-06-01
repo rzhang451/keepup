@@ -2,6 +2,9 @@ const Profile = require('../model/profileModel');
 const Course = require('../model/courseModel');
 const Media = require('../model/mediaModel');
 const Follow=require('../model/followModel');
+const multer = require ('multer');
+const UUId = require('uuid');
+var path = ('path');
 
 exports.add_blog = (req,res)=>{
   Profile.find({id: req.params.id},(err,docs)=>{
@@ -18,14 +21,29 @@ exports.add_blog = (req,res)=>{
         });
       }
     }else{
+      var storage = multer.diskStorage({
+        destination:path.resolve(__dirname,'../public/upload/image/social'),
+        filename:function(req,file,cb){
+          let extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
+          let filename = docs[0].username + Date.now()
+          cb(null,filename + extName)
+        }
+      })
+      
+      var imageUploader = multer({
+        storage:storage
+      })
+      
       var diary = new Media ({
         id:uuid.v1,
         usr:req.body.usr,
         usr_id:req.body.usr_id,
         content:req.body.content,
-        pic:req.body.pic,
+        //pic:req.body.pic,
+        pic:'../public/upload/image/social/'+ imageUploader.storage.filename + imageUploader.storage.extName,
         date:Date(),
-        comment: NULL,
+        comment: [],
+        like_usr:[],
         like:0
       });
       diary.save(function(err,diary){
@@ -207,7 +225,7 @@ exports.show_blog_all=(req,res,next)=>{
       info:info
     });
   next();
-}
+})
 }
                
 exports.show_otherProfile = (req,res,next)=>{
