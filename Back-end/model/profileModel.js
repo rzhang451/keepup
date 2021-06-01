@@ -19,7 +19,6 @@ var profileSchema = mongoose.Schema({
   Bmi: Number,
   totalExerciceDay: Number,
   totalExerciceTime: Number,
-  totalExerciceDay: Number,
   totalConsumption: Number,
   favor_course:[String]
 });

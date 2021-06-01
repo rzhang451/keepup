@@ -23,13 +23,13 @@ exports.video = (req,res,next)=>{
     else{
       console.log("Request for " + req.url + " received.");
       return res.json({
-        id:docs.id,
-        name:docs.name,
-        duration:docs.duration,
-        type:docs.type,
-        difficulty:docs.difficulty,
-        goal:docs.goal,
-        way:docs.way
+        id:docs[0].id,
+        name:docs[0].name,
+        duration:docs[0].duration,
+        type:docs[0].type,
+        difficulty:docs[0].difficulty,
+        goal:docs[0].goal,
+        way:docs[0].way
       });
     }
   });
@@ -136,8 +136,42 @@ exports.profile = (req,res,next)=>{
     }
     return res.json({
       msg:'Profile is returned',
-      code:'success',
-      profile:docs
+      code:'200',
+      username:docs[0].username,
+      email:docs[0].email,
+      password:docs[0].password,
+      sexe:docs[0].sexe,
+      avatar:docs[0].avatar,
+      location:docs[0].location,
+      miniIntro:docs[0].miniIntro,
+      totalExerciceDay:docs[0].totalExerciceDay,
+      totalExerciceTime:docs[0].totalExerciceTime,
+      totalConsumption:docs[0].totalConsumption
+    });
+  });
+  next();
+}
+
+exports.health = (req,res,next)=>{
+  Profile.findOne({id:req.params.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: 'error'
+      });
+    }
+    if(!docs){
+      return res.json({
+        msg:'Username incorrect!',
+        code: 'error'
+      });
+    }
+    return res.json({
+      msg:'Health is returned',
+      code:'200',
+      Height:docs[0].Height,
+      Weight:docs[0].Weight,
+      Bmi:docs[0].Bmi
     });
   });
   next();

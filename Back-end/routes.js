@@ -106,6 +106,9 @@ router.get('/course/check',user.check);
 
 //加载个人主页
 router.get('/profile/:id',user.profile);
+
+//load Health page
+router.get('profile/health/:id',user.health);
 //根据用户id查看follower
 router.get('profile/follower/:id',user.follower);
 //根据用户id查看已关注到人
