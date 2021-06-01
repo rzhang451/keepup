@@ -81,19 +81,21 @@ router.get('/agenda/:id',agenda.agenda);
 //***************************
 //social media
 //看他人的个人主页
-router.get('/profile/user/:id',media.user);
+router.get('/profile/user/:id',media.show_otherProfile);
 //添加到关注
-router.get('/media/subscribe/add/:id',media.subscribe);
+router.get('/media/subscribe/add/:id',media.add_follow);
 //write and share in media
-router.post('/media/post',add_pyq.add_pyq);
+router.post('/media/post',media.add_blog);
 //write comment
-router.post('/media/comment',add_comment.add_comment);
+router.post('/media/comment',media.add_comment);
 //show the posts of the people followed by a user
-router.get('/media/showposts_follow/:id',affiche_pyq_follow.affiche_pyq_follow);
+router.get('/media/showposts_follow/:id',media.show_blog_follow);
 //show user's own posts
-router.get('/media/showposts_self/:id',affiche_pyq_self.affiche_pyq_self);
+router.get('/media/showposts_self/:id',media.show_blog_self);
 //show other users' profile
-router.get('/media/showothers/:id',show_otherProfile.user);
+router.get('/media/showothers/:id',media.show_blog_all);
+//thumb up for a post
+router.post('/media/thumb_up',media.thumb_up);
 
 //***************************
 router.get('/public/image/*',users.image);
