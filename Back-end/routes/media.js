@@ -2,7 +2,7 @@ const Profile = require('../model/profileModel');
 const Course = require('../model/courseModel');
 const Media = require('../model/mediaModel');
 const Follow=require('../model/followModel');
-const multer = require ('multer');
+const Multer = require ('multer');
 const UUId = require('uuid');
 var path = ('path');
 
@@ -229,7 +229,6 @@ exports.show_blog_all=(req,res,next)=>{
         code:'200',
         data: datas}      
   next();
-}
 }
                
 exports.show_otherProfile = (req,res,next)=>{
