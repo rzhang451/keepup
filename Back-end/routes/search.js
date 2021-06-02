@@ -1,48 +1,48 @@
 const Course = require('../model/courseModel');
 const Profile = require('../model/profileModel');
 
-exports.search_course = (req,res,next)=>{
-    Course.findOne({name:req.params.name},(err,docs)=>{
+exports.search_course = (req,res)=>{
+      //find the course that has the key word given by the user
+    Course.find({name:{$regex:req.query.key,$options:'i'}},(err,docs)=>{
         if(err){
           return res.json({
             msg:'failed to connect',
-            code:'error'
+            code:'-1'
           });
         }
         if(!docs){
           return res.json({
             msg:'Cannot find course',
-            code:'error'
+            code:'-1'
           });
         }
         return res.json({
             msg:'Course is returned',
-            code:'success',
-            Course:docs.id
+            code:'200',
+            course:docs
         });
     });
-    next();
 }
 
-exports.search_user = (req,res,next)=>{
-  Profile.findOne({id:req.params.id},(err,docs)=>{
+exports.search_user = (req,res)=>{
+    //find the users that has the key word given by the user
+  Profile.find({name:{$regex:req.query.key,$options:'i'}},(err,docs)=>{
       if(err){
         return res.json({
           msg:'Failed to connect',
-          code: 'error'
+          code: '-1'
         });
       }
       if(!docs){
         return res.json({
           msg:'Username incorrect!',
-          code: 'error'
+          code: '-1'
         });
       }
       return res.json({
         msg:'Profile is returned',
-        code:'success',
-        Profile:docs.username
+        code:'200',
+        Profile:docs
       });
   });
-  next();
 }
