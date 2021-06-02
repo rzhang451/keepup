@@ -39,7 +39,8 @@ exports.video = (req,res)=>{
         goal:docs[0].goal,
         consumption:docs[0].consumption,
         intro:docs[0].intro,
-        way:docs[0].way
+        way:docs[0].way,
+        cover:docs[0].cover
       });
     }
   });
