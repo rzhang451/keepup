@@ -9,12 +9,7 @@ const login = require('./routes/login');
 const home = require('./routes/home');
 const agenda = require('./routes/agenda');
 const users = require('./routes/users'); 
-//const media = require('./routes/media');
-const { add_pyq } = require('./routes/add_pyq');
-const { add_comment } = require('./routes/add_comment');
-const { affiche_pyq_follow } = require('./routes/affiche_pyq_follow');
-const { affiche_pyq_self } = require('./routes/affiche_pyq_self');
-const show_ortherProfile = require('./routes/show_otherProfile');
+const media = require('./routes/media');
 const search = require('./routes/search');
 
 //*******************************************
@@ -58,21 +53,20 @@ router.post('/forgetpwd/pwd',login.forget_pwd_pwd);
 router.get('/mainpage/recommand/:id',home.recommand);
 
 //返回收藏课程
-router.get('/mainpage/favorite/:id',home.favorite);
+router.get('/mainpage/favorite/:id',home.show_favor_course);
 
 //触发按钮 activities
 
-//全局搜索 global search
+//search
+//conditional search
+router.get('/search/label',search.label_search);
 //全局搜索跳转到结果页面
 //前端向后端发送关键词，后端向前端返回用户详情，课程详情和动态详情
-router.post('/search/global/:key',home.global_search);
-
-//条件搜索 conditional search
-router.post('/search/condition',home.conditional_search);
 //find courses
-router.get('/search/search_course',search.search_course);
+router.get('/search',search.search_course);
 //find users
-router.get('/search/search_user',search.search_user);
+router.get('/search',search.search_user);
+
 
 //***************************
 //agenda
@@ -80,9 +74,9 @@ router.get('/agenda/:id',agenda.agenda);
 
 //***************************
 //social media
-//看他人的个人主页
+//see other's profile in media
 router.get('/profile/user/:id',media.show_otherProfile);
-//添加到关注
+//add a follow
 router.get('/media/subscribe/add/:id',media.add_follow);
 //write and share in media
 router.post('/media/post',media.add_blog);
@@ -98,31 +92,33 @@ router.get('/media/showothers/:id',media.show_blog_all);
 router.post('/media/thumb_up',media.thumb_up);
 
 //***************************
-router.get('/public/image/*',user.image);
+router.get('/public/image/*',users.image);
 
-router.get('/course/info/:id',user.info);
+router.get('/course/info/:id',users.info);
 //运动结束后记录
-router.get('/course/check',user.check);
+router.get('/course/check',users.check);
 
 //加载个人主页
-router.get('/profile/:id',user.profile);
+router.get('/profile/:id',users.profile);
 
 //load Health page
-router.get('profile/health/:id',user.health);
+router.get('profile/health/:id',users.health);
 //根据用户id查看follower
-router.get('profile/follower/:id',user.follower);
+router.get('profile/follower/:id',users.follower);
 //根据用户id查看已关注到人
-router.get('profile/subscribe/:id',user.subscribe);
+router.get('profile/subscribe/:id',users.subscribe);
 //更改头像
-router.post('profile/avatar/upload', uploadAvatar.single('photo'),user.avatar);
+router.post('profile/avatar/upload', uploadAvatar.single('photo'),users.avatar);
 //修改用户名/性别/地点/个人简介
-router.post('profile/change',user.change_profile);
+router.post('profile/change',users.change_profile);
 //修改密码
-router.post('/profile/changepwd',user.change_pwd);
+router.post('/profile/changepwd',users.change_pwd);
 //修改身高体重
-router.post('/profile/health',user.change_health);
+router.post('/profile/health',users.change_health);
+//add the course to favor course
+router.get('/search/add_favor',users.favor_course);
 //返回视频信息
-router.get('course/name',user.video);
+router.get('/course',users.video);
 
 
 module.exports = router;
