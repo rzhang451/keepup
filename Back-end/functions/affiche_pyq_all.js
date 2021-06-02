@@ -3,7 +3,7 @@ const Media=require('../model/mediaModel');
 exports.affiche_pyq_all=(req,res,next)=>{
   const date = new Date();
   var j;
-  var infos = [];
+  var datas = [];
   for(j=0;j<30;j++){
       Media.find({date:{$gte:date.setDate(date.getDate()-5)}},(err,actus)=>{
         if(err){
@@ -39,7 +39,7 @@ exports.affiche_pyq_all=(req,res,next)=>{
           like_user:actus.like_user,
           photo:actus.pic
       };
-      datas.push(info);
+      datas.push(data);
       }
       res.json{        
         msg:'All media is returned',
