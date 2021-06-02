@@ -128,3 +128,61 @@ exports.avatar = (req,res)=>{
     }
   })
 }
+exports.show_favor_course=(req,res)=>{
+  Profile.find({name:req.query.name},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: '-1'
+      });
+    }
+    if(!docs){
+      return res.json({
+        msg:'Username incorrect!',
+        code: '-1'
+      });
+    }
+    else{
+      var favor_liste=docs.favor_course;
+    }
+  });
+  int k;
+  var favor_result=[];
+  for(k=0;k<favor_liste.length;k++){
+    Course.find({id:favor_liste[k]},(err,courses)=>{
+      if(err){
+        return res.json({
+          msg:'Failed to connect',
+          code: '-1'
+        });
+      }
+      if(!docs){
+        return res.json({
+          msg:'Course not found!',
+          code: '-1'
+        });
+      }
+      else{
+        var data={
+          id:courses.id,
+          name:courses.name,
+          duration:courses.duration,
+          type:courses.type,
+          difficulty:courses.difficulty,
+          goal:courses.goal,
+          consumption:courses.consemption,
+          intro:courses.intro,
+          way:courses.way
+        };
+        favor_result.push(data);
+      }
+    });
+  }
+  return res.json({
+    msg:'All favour got',
+    code:'200',
+    data:favor_result
+  });
+  next();
+}
+
