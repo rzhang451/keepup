@@ -46,3 +46,87 @@ exports.search_user = (req,res)=>{
       });
   });
 }
+
+exports.label_search=(req,res)=>{
+  Course.find({duration:req.query.key},(err,docs)=>{
+    if(err){
+          return res.json({
+            msg:'failed to connect',
+            code:'error'
+          });
+          }
+        if(!docs){
+         return res.json({
+            msg:'Cannot find user',
+            code:'-1'});
+        }
+        else{
+          return res.json({
+            msg:'research found',
+            code:'200',
+            docs:docs
+          });
+        }
+  });
+  Course.find({type:req.query.key},(err,docs)=>{
+    if(err){
+          return res.json({
+            msg:'failed to connect',
+            code:'error'
+          });
+          }
+    if(!docs){
+         return res.json({
+            msg:'Cannot find user',
+            code:'-1'});
+        }
+        else{
+          return res.json({
+            msg:'research found',
+            code:'200',
+            docs:docs
+          });
+        }
+  });
+  Course.find({difficulty:req.query.key},(err,docs)=>{
+    if(err){
+          return res.json({
+            msg:'failed to connect',
+            code:'error'
+          });
+          }
+        if(!docs){
+         return res.json({
+            msg:'Cannot find user',
+            code:'-1'});
+        }
+        else{
+          return res.json({
+            msg:'research found',
+            code:'200',
+            docs:docs
+          });
+        }
+  });
+  Course.find({goal:req.query.key},(err,docs)=>{
+    if(err){
+          return res.json({
+            msg:'failed to connect',
+            code:'error'
+          });
+          }
+        if(!docs){
+         return res.json({
+            msg:'Cannot find user',
+            code:'-1'});
+        }
+        else{
+          return res.json({
+            msg:'research found',
+            code:'200',
+            docs:docs
+          });
+        }
+  });
+
+}
