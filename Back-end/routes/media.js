@@ -31,7 +31,11 @@ exports.add_blog = (req,res)=>{
       })
       
       var imageUploader = multer({
-        storage:storage
+        storage_social:storage_social
+      })
+      //upload image
+      router.post('/media/post/image',,imageUploader_social.single('photo'),function(req,res){
+        console.log('the info of the image ', req.files);
       })
       
       var diary = new Media ({
