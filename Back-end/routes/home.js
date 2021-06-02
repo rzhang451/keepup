@@ -129,7 +129,7 @@ exports.avatar = (req,res)=>{
   })
 }
 exports.show_favor_course=(req,res)=>{
-  Profile.find({name:req.query.name},(err,docs)=>{
+  Profile.find({id:req.query.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -184,5 +184,31 @@ exports.show_favor_course=(req,res)=>{
     data:favor_result
   });
   next();
+}
+
+exports.show_myhealth = (req,res)=>{
+  Profile.findOne({id:req.query.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'failed to connect',
+        code:'-1'
+      });
+    }
+    if(!docs){
+      return res.json({
+        msg:'user does not exist',
+        code:'-1'
+      });
+    }
+    else{
+      return res.json({
+        msg:'info got',
+        code:'200',
+        height:docs[0].Height,
+        weight:docs[0].Weight,
+        bmi:docs[0].Bmi
+      });
+    }
+  });
 }
 
