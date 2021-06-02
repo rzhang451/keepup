@@ -16,7 +16,7 @@ exports.add_blog = (req,res)=>{
       if(!docs.length){
       //返回用户不存在
         return res.json({
-          msg:'User doesn\'t existe',
+          msg:'User doesn\'t exist',
           code: '-1'
         });
       }
@@ -40,7 +40,8 @@ exports.add_blog = (req,res)=>{
         usr_id:req.body.usr_id,
         content:req.body.content,
         //pic:req.body.pic,
-        pic:'../public/upload/image/social/'+ imageUploader.storage.filename + imageUploader.storage.extName,
+         //pic:'../public/upload/image/social/'+ imageUploader_social.storage_social.filename + imageUploader_social.storage_social.extName,
+        pic:req.files.path,
         date:Date(),
         comment: [],
         like_usr:[],
@@ -76,7 +77,7 @@ exports.add_comment = (req,res)=>{
       if(!docs.length){
       //返回动态不存在
         return res.json({
-          msg:'Diary doesn\'t existe',
+          msg:'Diary doesn\'t exist',
           code: '-1'
         });
       }
@@ -94,7 +95,7 @@ exports.add_comment = (req,res)=>{
   })
 }
 
-exports.show_blog_self=(req,res,next)=>{
+exports.show_blog_self=(req,res)=>{
   Profile.findOne({id:req.params.id},(err,docs)=>{
     if(err){
       return res.json({
@@ -179,7 +180,6 @@ exports.show_blog_follow=(req,res,next)=>{
       follow:follow[follow],
       info:info
     });
-  next();
   });
 }
 
