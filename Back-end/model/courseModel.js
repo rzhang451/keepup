@@ -8,6 +8,8 @@ var courseSchema = mongoose.Schema({
   type: String,
   difficulty: Number, //(1-easy, 2-medium 3-difficult)
   goal: String,
+  consumption:Number,
+  intro:String,
   way:String
 });
 //Model
