@@ -10,7 +10,8 @@ var courseSchema = mongoose.Schema({
   goal: String,
   consumption:Number,
   intro:String,
-  way:String
+  way:String,
+  cover:String
 });
 //Model
 module.exports = mongoose.model('Course',courseSchema);
