@@ -48,85 +48,98 @@ exports.search_user = (req,res)=>{
 }
 
 exports.label_search=(req,res)=>{
-  Course.find({duration:req.query.key},(err,docs)=>{
-    if(err){
+  if(req.query.duration=='5-10'||req.query.duration=='10-20'||req.query.duration=='20-40'|req.query.duration=='40以上')
+  {
+    Course.find({duration:req.query.key},(err,docs)=>{
+      if(err){
+            return res.json({
+              msg:'failed to connect',
+              code:'error'
+            });
+            }
+          if(!docs){
           return res.json({
-            msg:'failed to connect',
-            code:'error'
-          });
+              msg:'Cannot find user',
+              code:'-1'});
           }
-        if(!docs){
-         return res.json({
-            msg:'Cannot find user',
-            code:'-1'});
-        }
-        else{
-          return res.json({
-            msg:'research found',
-            code:'200',
-            docs:docs
-          });
-        }
-  });
-  Course.find({type:req.query.key},(err,docs)=>{
-    if(err){
-          return res.json({
-            msg:'failed to connect',
-            code:'error'
-          });
+          else{
+            return res.json({
+              msg:'research found',
+              code:'200',
+              docs:docs
+            });
           }
-    if(!docs){
-         return res.json({
-            msg:'Cannot find user',
-            code:'-1'});
-        }
-        else{
+    });
+  }
+  if(req.query.type=='腿'||req.query.type=='胳膊'||req.query.type=='腹'|req.query.type=='肩背')
+  {
+    Course.find({type:req.query.key},(err,docs)=>{
+      if(err){
+            return res.json({
+              msg:'failed to connect',
+              code:'error'
+            });
+            }
+      if(!docs){
           return res.json({
-            msg:'research found',
-            code:'200',
-            docs:docs
-          });
-        }
-  });
-  Course.find({difficulty:req.query.key},(err,docs)=>{
-    if(err){
-          return res.json({
-            msg:'failed to connect',
-            code:'error'
-          });
+              msg:'Cannot find user',
+              code:'-1'});
           }
-        if(!docs){
-         return res.json({
-            msg:'Cannot find user',
-            code:'-1'});
-        }
-        else{
-          return res.json({
-            msg:'research found',
-            code:'200',
-            docs:docs
-          });
-        }
-  });
-  Course.find({goal:req.query.key},(err,docs)=>{
-    if(err){
-          return res.json({
-            msg:'failed to connect',
-            code:'error'
-          });
+          else{
+            return res.json({
+              msg:'research found',
+              code:'200',
+              docs:docs
+            });
           }
-        if(!docs){
-         return res.json({
-            msg:'Cannot find user',
-            code:'-1'});
-        }
-        else{
+    });
+  }
+  if(req.query.difficulty=='1'||req.query.difficulty=='2'||req.query.difficulty=='3')
+  {
+    Course.find({difficulty:req.query.key},(err,docs)=>{
+      if(err){
+            return res.json({
+              msg:'failed to connect',
+              code:'error'
+            });
+            }
+          if(!docs){
           return res.json({
-            msg:'research found',
-            code:'200',
-            docs:docs
-          });
-        }
-  });
+              msg:'Cannot find user',
+              code:'-1'});
+          }
+          else{
+            return res.json({
+              msg:'research found',
+              code:'200',
+              docs:docs
+            });
+          }
+    });
+  }
+  if(req.query.goal=='练肌'||req.query.goal=='减肥')
+  {
+    Course.find({goal:req.query.key},(err,docs)=>{
+      if(err){
+            return res.json({
+              msg:'failed to connect',
+              code:'error'
+            });
+            }
+          if(!docs){
+          return res.json({
+              msg:'Cannot find user',
+              code:'-1'});
+          }
+          else{
+            return res.json({
+              msg:'research found',
+              code:'200',
+              docs:docs
+            });
+          }
+    });
+  }
 
 }
+
