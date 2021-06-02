@@ -30,7 +30,7 @@ exports.add_blog = (req,res)=>{
         }
       })
       
-      var imageUploader = multer({
+      var imageUploader_social = multer({
         storage_social:storage_social
       })
       //upload image
