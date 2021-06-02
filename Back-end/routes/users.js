@@ -3,60 +3,47 @@ const Course = require('../model/courseModel');
 const Profile = require('../model/profileModel');
 const Follow = require('../model/followModel');
 
-exports.image = (req,res,next)=>{
+exports.image = (req,res)=>{
   var filePath = path.resolve('./'+req.url);
     res.sendFile( filePath );
     console.log("Request for " + req.url + " received.");
 }
 
-exports.video = (req,res,next)=>{
+//give front-end the detailed infos of the video
+exports.video = (req,res)=>{
   /*var filePath = path.resolve('./'+req.url);
     res.sendFile( filePath );*/
     
-  Course.find({name:req.body.name},(err,docs)=>{
+  Course.find({name:req.query.name},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to fetch video',
         code: '-1'
       });
     }
+    if(!docs){
+      return res.json({
+        msg:'Course doesn\'t existe',
+        code: '-1'
+      });
+    }
     else{
       console.log("Request for " + req.url + " received.");
       return res.json({
-        id:docs[0].id,
+        msg:'got video!',
+        code:'200',
         name:docs[0].name,
         duration:docs[0].duration,
         type:docs[0].type,
         difficulty:docs[0].difficulty,
         goal:docs[0].goal,
+        consumption:docs[0].consumption,
+        intro:docs[0].intro,
         way:docs[0].way
       });
     }
   });
 
-}
-
-exports.info = (req,res,next)=>{
-  Course.findOne({id:req.params.id},(err,docs)=>{
-    if(err){
-      res.json({
-        msg: 'Failed with connection',
-        code: 'error'
-      });
-    }
-    if(!docs){
-      return res.json({
-        msg:'Course doesn\'t existe',
-        code: 'error'
-      });
-    }
-    return res.json({
-      msg:'info of course is returned',
-      code:'success',
-      info:docs
-    });
-  });
-  next();
 }
 
 exports.check = (req,res,next)=>{
@@ -69,13 +56,13 @@ exports.check = (req,res,next)=>{
     if(err){
       res.json({
         msg: 'Failed with connection',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'User doesn\'t existe',
-        code: 'error'
+        code: '-1'
       });
     }
     person = docs;
@@ -88,13 +75,13 @@ exports.check = (req,res,next)=>{
     if(err){
       res.json({
         msg: 'Failed with connection',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Course doesn\'t existe',
-        code: 'error'
+        code: '-1'
       });
     }
     person.totalConsumption = person.totalConsumption + docs.consumption;
@@ -107,12 +94,12 @@ exports.check = (req,res,next)=>{
     if(err){
       res.json({
         msg: 'Failed with connection',
-        code: 'error'
+        code: '-1'
       });
     }else{
       return res.json({
         msg: 'profile is updated',
-        code: 'success',
+        code: '200',
         totalDay: person.totalExerciceDay
       });
     }
@@ -120,18 +107,18 @@ exports.check = (req,res,next)=>{
   next();
 }
 
-exports.profile = (req,res,next)=>{
+exports.profile = (req,res)=>{
   Profile.findOne({id:req.params.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Username incorrect!',
-        code: 'error'
+        code: '-1'
       });
     }
     return res.json({
@@ -149,7 +136,6 @@ exports.profile = (req,res,next)=>{
       totalConsumption:docs[0].totalConsumption
     });
   });
-  next();
 }
 
 exports.health = (req,res,next)=>{
@@ -157,13 +143,13 @@ exports.health = (req,res,next)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Username incorrect!',
-        code: 'error'
+        code: '-1'
       });
     }
     return res.json({
@@ -182,25 +168,26 @@ exports.follower = (req,res,next)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Username incorrect!',
-        code: 'error'
+        code: '-1'
       });
     }
     return res.json({
       msg:'Profile is returned',
-      code:'success',
+      code:'200',
       follower:docs.follower
     });
   });
   next();
 }
 
-exports.subscribe = (req,res,next)=>{
+//已经在media里写了add_follow
+/*exports.subscribe = (req,res,next)=>{     
   Profile.findOne({id:req.params.id},(err,docs)=>{
     if(err){
       return res.json({
@@ -222,7 +209,7 @@ exports.subscribe = (req,res,next)=>{
   });
   next();
 }
-
+*/
 exports.change_profile = (req,res)=>{
   Profile.update({id:req.body.id},{$set:{username = req.body.name,
                                          sexe = req.body.sexe,
@@ -231,12 +218,12 @@ exports.change_profile = (req,res)=>{
     if(err){
       res.json({
           msg: 'Failed to update',
-          code: 'error'
+          code: '-1'
       });
     }else{
       res.json({
         msg: 'Update ok',
-        code: 'success'
+        code: '200'
       })
     }
   });
@@ -247,13 +234,13 @@ exports.change_pwd = (req,res)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: 'error'
+        code: '-1'
       });
     }
     if(!docs){
       return res.json({
         msg:'Username incorrect!',
-        code: 'error'
+        code: '-1'
       });
     }
     if(req.params.old_pwd!=docs.password){
@@ -268,14 +255,14 @@ exports.change_pwd = (req,res)=>{
       if(err){
         return res.json({
           msg:'Failed to connect',
-          code: 'error'
+          code: '-1'
         });
       }
     });
   }
   return res.json({
     msg:'Successfully Modified',
-    code:'success'
+    code:'200'
   });
 }
 
@@ -286,12 +273,12 @@ exports.change_health = (req,res)=>{
     if(err){
       res.json({
           msg: 'Failed to update',
-          code: 'error'
+          code: '-1'
       });
     }else{
       res.json({
         msg: 'Update ok',
-        code: 'success'
+        code: '200'
       })
     }
   });
