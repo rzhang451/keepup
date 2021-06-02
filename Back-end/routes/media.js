@@ -36,7 +36,7 @@ exports.add_blog = (req,res)=>{
       
       var diary = new Media ({
         id:uuid.v1,
-        usr:req.body.usr,
+        usr:docs[0].username,
         usr_id:req.body.usr_id,
         content:req.body.content,
         //pic:req.body.pic,
@@ -66,8 +66,8 @@ exports.add_blog = (req,res)=>{
   })
 }
 
-exports.add_comment = (req,res,next)=>{
-  Media.find({id: req.body.id},(err,docs)=>{
+exports.add_comment = (req,res)=>{
+  Media.find({id: req.query.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
