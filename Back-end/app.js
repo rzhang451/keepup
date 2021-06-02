@@ -38,7 +38,9 @@ app.use(session({
 
 
 //调用静态资源
-app.use(express.static('public'));
+//app.use(express.static('public'));
 app.use('/',routes);
+app.use('/video',express.static('./public/video'));
+app.use('/images',express.static('./public/images'));
 
 module.exports = app;
