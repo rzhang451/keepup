@@ -112,15 +112,25 @@ exports.avatar = (req,res)=>{
         destination:path.resolve(__dirname,'../public/upload/image/profile'),
         filename:function(req,file,cb){
         let extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
-        let filename = docs[0].username + Date.now()
+        let filename = docs[0].username
         cb(null,filename + extName)
         }
       })
 
-      var imageUploader = multer({
-        storage:storage
+      var imageUploader_avatar = multer({
+        storage_avatar:storage_avatar
       })
-
+      router.post('/profile/avatar/upload/image', imageUploader_avatar.single('photo'),function(req,res){
+        console.log(req.files);
+      });
+      Profile.update({id:docs[0].id},{$set:{avatar:req.files.path}},(err)=>{
+        if (!err){
+          console.log('soccessfully modified')
+        }
+        else{
+          throw err
+        }
+      });
       return res.json({
       msg:'avatar is uploaded',
       code:'200'
