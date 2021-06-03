@@ -34,7 +34,7 @@ exports.add_blog = (req,res)=>{
         storage_social:storage_social
       })
       //upload image
-      router.post('/media/post/image',,imageUploader_social.single('photo'),function(req,res){
+      router.post('/media/post/image',imageUploader_social.single('photo'),function(req,res){
         console.log('the info of the image ', req.files);
       })
       
@@ -228,10 +228,10 @@ exports.show_blog_all=(req,res,next)=>{
       };
       datas.push(data);
       }
-      res.json{        
+      res.json({        
         msg:'All media is returned',
         code:'200',
-        data: datas}      
+        data: datas})      
   next();
 }
                
