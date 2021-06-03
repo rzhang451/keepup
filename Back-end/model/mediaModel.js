@@ -2,7 +2,7 @@ const mongoose = require('./mongoose');
 const uuid = require('node-uuid');
 
 //Social Media database
-var mediaShema = mongoose.Schema({
+var mediaSchema = mongoose.Schema({
   id:{
     type:String,
     default:uuid.v1
