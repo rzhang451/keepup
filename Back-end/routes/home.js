@@ -156,7 +156,7 @@ exports.show_favor_course=(req,res)=>{
       var favor_liste=docs.favor_course;
     }
   });
-  int k;
+  var k;
   var favor_result=[];
   for(k=0;k<favor_liste.length;k++){
     Course.find({id:favor_liste[k]},(err,courses)=>{

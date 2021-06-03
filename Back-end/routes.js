@@ -50,6 +50,8 @@ router.get('/mainpage/recommand/:id',home.recommand);
 //返回收藏课程
 router.get('/mainpage/favorite/:id',home.show_favor_course);
 
+//return list of followings
+router.get('/profile/follow',home.show_follow);
 //触发按钮 activities
 
 //search
