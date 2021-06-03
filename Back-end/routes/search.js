@@ -16,11 +16,15 @@ exports.search_course = (req,res)=>{
             code:'-1'
           });
         }
-        return res.json({
-            msg:'Course is returned',
-            code:'200',
-            course:docs
-        });
+       else{
+            console.log("Request for " + req.url + " received.");
+            return res.json({
+                msg:'Course is returned',
+                code:'200',
+                result_number:docs.length,
+                data:[{name:docs[0].name,duration:docs[0].duration,cover:docs[0].cover}]
+              });
+        }
     });
 }
 
@@ -39,11 +43,14 @@ exports.search_user = (req,res)=>{
           code: '-1'
         });
       }
-      return res.json({
-        msg:'Profile is returned',
-        code:'200',
-        Profile:docs
+      else{
+        console.log("Request for " + req.url + " received.");
+        return res.json({
+          msg:'Profile is returned',
+          code:'200',
+          Profile:[{username:docs[0].username,sexe:docs[0].sexe,miniIntro:docs[0].miniIntro}]
       });
+    }
   });
 }
 
