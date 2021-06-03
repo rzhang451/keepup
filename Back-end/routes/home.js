@@ -222,3 +222,27 @@ exports.show_myhealth = (req,res)=>{
   });
 }
 
+exports.show_follow=(req,res)=>{
+  Follow.find({id:req.query.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: '-1'
+      });
+    }
+    if(!docs){
+      return res.json({
+        msg:'User id incorrect!',
+        code: '-1'
+      });
+    }
+    else{
+      return res.json({
+        msg:'Follow list get!',
+        code:'200',
+        follow:docs[0].follow,
+        follower:docs[0].follower
+      })
+    }
+  });
+}
