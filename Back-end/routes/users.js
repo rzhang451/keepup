@@ -217,10 +217,10 @@ exports.follower = (req,res,next)=>{
 }
 */
 exports.change_profile = (req,res)=>{
-  Profile.update({id:req.body.id},{$set:{username = req.body.name,
-                                         sexe = req.body.sexe,
-                                         location = req.body.location,
-                                         miniIntro = req.body.intro,}},(err)=>{
+  Profile.update({username:req.body.username},{$set:{//username :req.body.username,
+                                         sexe :req.body.sexe,
+                                         location : req.body.location,
+                                         miniIntro : req.body.intro,}},(err)=>{
     if(err){
       res.json({
           msg: 'Failed to update',
@@ -292,12 +292,15 @@ exports.change_health = (req,res)=>{
 
 //add new favor course
 exports.favor_course = (req,res)=>{
-  Profile.find({id: req.body.id},(err,docs)=>{
+  Profile.find({id:req.body.id},(err,docs)=>{
+    //var course_id = req.body.course_id;
+    var favor=docs[0].favor_course;
     if(err){
       return res.json({
         msg:'Failed to connect',
         code: '-1'
       });
+    }
       if(!docs.length){
       //返回user不存在
         return res.json({
@@ -305,14 +308,27 @@ exports.favor_course = (req,res)=>{
           code: '-1'
         });
       }
-    }else{
+    else{
      //add new favor course
-      var course_id = req.body.id;
-      favor_course.add(course_id);
-      return res.json({
-        msg:'favor course is added',
-        code: '200'
-      });
-    }
-  })
-}
+     favor.push(req.body.course_id);
+     Profile.updateOne({id:req.body.id},{$set:{favor_course:favor}},(err)=>{
+        if(err){
+        res.json({
+            msg: 'Failed to update',
+            code: '-1'
+            });
+        }else{
+          return res.json({
+            msg:'favor course is added',
+            code: '200',
+            courseid:req.body.course_id
+          });
+        }
+          });
+        }
+      
+     
+    });
+  }
+
+
