@@ -39,12 +39,7 @@ router.post('/sign-up/pwd',login.sign_up_pwd);
 router.post('/forgetpwd/email',login.forget_pwd_email);
 //验证验证码
 //前端向后端发送email和验证码，后端返回验证状态
-router.post('/forgetpwd/code',login.forget_pwd_code);
-//验证成功后，由忘记密码页面跳转至修改密码页面
-//修改密码页面：该页面在显示时，不需要向后端请求资源
-//注册
-//前端向后端发送邮箱和密码，后端返回注册状态和用户id
-router.post('/forgetpwd/pwd',login.forget_pwd_pwd);
+router.post('/forgetpwd/login',login.forget_pwd_login);
 
 //***************************
 //主页: 该页面在显示时，前端向后端发送用户id，后端返回推荐的和已收藏的课程
