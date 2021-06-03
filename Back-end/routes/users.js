@@ -109,7 +109,7 @@ exports.check = (req,res,next)=>{
 }
 
 exports.profile = (req,res)=>{
-  Profile.findOne({id:req.params.id},(err,docs)=>{
+  Profile.find({id:req.query.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -122,25 +122,29 @@ exports.profile = (req,res)=>{
         code: '-1'
       });
     }
-    return res.json({
-      msg:'Profile is returned',
-      code:'200',
-      username:docs[0].username,
-      email:docs[0].email,
-      password:docs[0].password,
-      sexe:docs[0].sexe,
-      avatar:docs[0].avatar,
-      location:docs[0].location,
-      miniIntro:docs[0].miniIntro,
-      totalExerciceDay:docs[0].totalExerciceDay,
-      totalExerciceTime:docs[0].totalExerciceTime,
-      totalConsumption:docs[0].totalConsumption
-    });
+    else{
+      return res.json({
+        msg:'Profile is returned',
+        code:'200',
+        data:[{
+          sexe:docs[0].sexe,
+          location:docs[0].location,
+          email:docs[0].email,
+          password:docs[0].password,
+          username:docs[0].username,
+          avatar:docs[0].avatar,
+          miniIntro:docs[0].miniIntro,
+          totalExerciceDay:docs[0].totalExerciceDay,
+          totalExerciceTime:docs[0].totalExerciceTime,
+          totalConsumption:docs[0].totalConsumption
+        }]
+      });
+    }
   });
 }
 
-exports.health = (req,res,next)=>{
-  Profile.findOne({id:req.params.id},(err,docs)=>{
+exports.health = (req,res)=>{
+  Profile.find({id:req.query.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -156,12 +160,13 @@ exports.health = (req,res,next)=>{
     return res.json({
       msg:'Health is returned',
       code:'200',
-      Height:docs[0].Height,
-      Weight:docs[0].Weight,
-      Bmi:docs[0].Bmi
+      data:[{
+        Height:docs[0].Height,Weight:docs[0].Weight,Bmi:docs[0].Bmi
+      }]
+      
     });
   });
-  next();
+
 }
 
 exports.follower = (req,res,next)=>{

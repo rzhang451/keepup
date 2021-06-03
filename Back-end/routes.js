@@ -94,10 +94,10 @@ router.get('/course/info/:id',users.info);
 router.get('/course/check',users.check);
 
 //加载个人主页
-router.get('/profile/:id',users.profile);
+router.get('/profile/id',users.profile);
 
 //load Health page
-router.get('profile/health/:id',users.health);
+router.get('/profile/health',users.health);
 //根据用户id查看follower
 router.get('profile/follower/:id',users.follower);
 //根据用户id查看已关注到人
