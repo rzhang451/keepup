@@ -2,30 +2,35 @@ const Course = require('../model/courseModel');
 const Profile = require('../model/profileModel');
 
 exports.search_course = (req,res)=>{
-      //find the course that has the key word given by the user
-    Course.find({name:{$regex:req.query.key,$options:'i'}},(err,docs)=>{
-        if(err){
-          return res.json({
-            msg:'failed to connect',
-            code:'-1'
-          });
-        }
-        if(!docs){
-          return res.json({
-            msg:'Cannot find course',
-            code:'-1'
-          });
-        }
-        return res.json({
-            msg:'Course is returned',
-            code:'200',
-            course:docs
+  //var courses = [];
+  //find the course that has the key word given by the user
+  Course.find({name:{$regex:req.query.key,$options:'i'}},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'failed to connect',
+        code:'-1'
+      });
+    }
+    if(!docs){
+      return res.json({
+        msg:'Cannot find course',
+        code:'-1'
+      });
+    }
+    else{
+      console.log("Request for " + req.url + " received.");
+      return res.json({
+          msg:'Course is returned',
+          code:'200',
+          result_number:docs.length,
+          data:[{name:docs[0].name,duration:docs[0].duration,cover:docs[0].cover}]
         });
-    });
+  }
+});
 }
 
 exports.search_user = (req,res)=>{
-    //find the users that has the key word given by the user
+  //find the users that has the key word given by the user
   Profile.find({name:{$regex:req.query.key,$options:'i'}},(err,docs)=>{
       if(err){
         return res.json({
@@ -39,22 +44,26 @@ exports.search_user = (req,res)=>{
           code: '-1'
         });
       }
-      return res.json({
-        msg:'Profile is returned',
-        code:'200',
-        Profile:docs
+      else{
+        console.log("Request for " + req.url + " received.");
+        return res.json({
+          msg:'Profile is returned',
+          code:'200',
+          Profile:[{username:docs[0].username,sexe:docs[0].sexe}]
       });
+    }
   });
 }
 
 exports.label_search=(req,res)=>{
-  if(req.query.duration=='5-10'||req.query.duration=='10-20'||req.query.duration=='20-40'|req.query.duration=='40以上')
+  console.log("Request for " + req.url + " received.");
+  if(req.query.duration=='5-10'||req.query.duration=='10-20'||req.query.duration=='20-40'|req.query.duration=='40+')
   {
-    Course.find({duration:req.query.key},(err,docs)=>{
+    Course.find({duration:req.query.duration},(err,docs)=>{
       if(err){
             return res.json({
               msg:'failed to connect',
-              code:'error'
+              code:'-1'
             });
             }
           if(!docs){
@@ -66,18 +75,18 @@ exports.label_search=(req,res)=>{
             return res.json({
               msg:'research found',
               code:'200',
-              docs:docs
+              data:[{name:docs[0].name,duration:docs[0].duration,cover:docs[0].cover}]
             });
           }
     });
   }
-  if(req.query.type=='腿'||req.query.type=='胳膊'||req.query.type=='腹'|req.query.type=='肩背')
+  if(req.query.type=='leg'||req.query.type=='arm'||req.query.type=='abdominal'|req.query.type=='back')
   {
-    Course.find({type:req.query.key},(err,docs)=>{
+    Course.find({type:req.query.type},(err,docs)=>{
       if(err){
             return res.json({
               msg:'failed to connect',
-              code:'error'
+              code:'-1'
             });
             }
       if(!docs){
@@ -85,22 +94,22 @@ exports.label_search=(req,res)=>{
               msg:'Cannot find user',
               code:'-1'});
           }
-          else{
-            return res.json({
+      else{
+          return res.json({
               msg:'research found',
               code:'200',
-              docs:docs
+              data:[{name:docs[0].name,duration:docs[0].duration,cover:docs[0].cover}]
             });
           }
     });
   }
   if(req.query.difficulty=='1'||req.query.difficulty=='2'||req.query.difficulty=='3')
   {
-    Course.find({difficulty:req.query.key},(err,docs)=>{
+    Course.find({difficulty:req.query.difficulty},(err,docs)=>{
       if(err){
             return res.json({
               msg:'failed to connect',
-              code:'error'
+              code:'-1'
             });
             }
           if(!docs){
@@ -112,18 +121,18 @@ exports.label_search=(req,res)=>{
             return res.json({
               msg:'research found',
               code:'200',
-              docs:docs
+              data:[{name:docs[0].name,duration:docs[0].duration,cover:docs[0].cover}]
             });
           }
     });
   }
-  if(req.query.goal=='练肌'||req.query.goal=='减肥')
+  if(req.query.goal=='muscle'||req.query.goal=='lose weight')
   {
-    Course.find({goal:req.query.key},(err,docs)=>{
+    Course.find({goal:req.query.goal},(err,docs)=>{
       if(err){
             return res.json({
               msg:'failed to connect',
-              code:'error'
+              code:'-1'
             });
             }
           if(!docs){
@@ -135,11 +144,10 @@ exports.label_search=(req,res)=>{
             return res.json({
               msg:'research found',
               code:'200',
-              docs:docs
+              data:[{name:docs[0].name,duration:docs[0].duration,cover:docs[0].cover}]
             });
           }
     });
   }
 
 }
-
