@@ -189,13 +189,88 @@ exports.forget_pwd_email = (req,res)=>{
   })
 }
 
-exports.forget_pwd_code = (req,res)=>{
+exports.forget_pwd_email = (req,res)=>{
+  var mail = req.body.email;
+  var code = parseInt((Math.random(0,1)*0.9+0.1)*10000);
+  if(!validator.isEmail(mail)){
+    console.log("not email");
+      return res.json({
+        msg:'Email Invalide!',
+        code: '-1'
+      });
+  }
+  console.log('I\'m in');
+  Profile.find({email: mail},(err,docs)=>{
+    if(!err){
+      console.log('aaa');
+      if(!docs.length){
+        console.log("null");
+        return res.json({
+          msg:"Email doesn't existe!",
+          code:'202'
+        });
+      }else{
+        console.log('bbb');
+        email.sendMail(mail,code,(state)=>{
+          if(state){
+            forgetPwdCheck[mail]=code;
+            console.log("success");
+            return res.json({
+              msg:"Send Code Successful",
+              code:'200',
+            });
+          }else{
+            console.log("failed");
+            return res.json({
+              msg:"Send Code Failed",
+              code:'201',
+            });
+          }
+        });
+      }
+    }else{
+      console.log("failed to connect");
+      return res.json({
+        msg:'Failed to Connect',
+        code:'-1'
+      });
+    }
+  })
+}
+
+exports.forget_pwd_login = (req,res)=>{
   var mail = req.body.email;
   var code = req.body.code;
   if(code == forgetPwdCheck[email]){
-    return res.json({
-      msg:"Please Enter Your New Password",
-      code:'200'
+    if(req.body.pwd!=req.body.check){
+      return res.json({
+        msg:'passwords are not the same!',
+        code:'-1'
+      })
+    }
+    if(!validator.matches(req.body.pwd,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(req.body.pwd,6,12)){
+        return res.json({
+          msg:'Password Invalide,the length should be between 6 and 12, please enter again',
+          code: '-1'
+        });
+    }
+    Profile.update({email:req.body.email},{$set:{password:req.body.pwd}},(err)=>{
+      if(!err){
+        Profile.findOne({email: mail},(err,docs)=>{
+          if(err) return console.error(err);
+          res.session.usr = docs.id;
+        })
+        return res.json({
+          msg:"Password Modified ",
+          code:'200',
+          data:[{id:docs.id}]
+        });
+      }else{
+        return res.json({
+          msg:"problem with modification",
+          code:'-1'
+        });
+      }
     });
   }else{
     return res.json({
@@ -203,39 +278,6 @@ exports.forget_pwd_code = (req,res)=>{
       code:'201'
     });
   }
-}
-
-exports.forget_pwd_pwd=(req,res)=>{
-  if(req.body.pwd!=req.body.check){
-    return res.json({
-      msg:'passwords are not the same!',
-      code:'-1'
-    })
-  }
-  if(!validator.matches(password,/(?!^\\d+$)(?!^[a-zA-Z]+$)(?!^[_#@]+$).{5,}/,'g') || !validator.isLength(password,6,12)){
-      return res.json({
-        msg:'Password Invalide,the length should be between 6 and 12, please enter again',
-        code: '-1'
-      });
-  }
-  Profile.update({email:req.body.email},{$set:{password:req.body.pwd}},(err)=>{
-    if(!err){
-      Profile.findOne({email: mail},(err,docs)=>{
-        if(err) return console.error(err);
-        res.session.usr = docs.id;
-      })
-      return res.json({
-        msg:"Password Modified ",
-        code:'200',
-        info:docs.id
-      });
-    }else{
-      return res.json({
-        msg:"problem with modification",
-        code:'-1'
-      });
-    }
-  });
 }
 
 
