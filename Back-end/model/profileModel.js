@@ -11,12 +11,15 @@ var profileSchema = mongoose.Schema({
   email: String,
   password: String,
   sexe: String,
-  avatar: String,
   location: String,
   miniIntro: String,
   Height: Number,
   Weight: Number,
   Bmi: Number,
+  avatar:{
+    type:String,
+    default:'/public/upload/image/profile/default.jpg'
+  },
   totalExerciceDay: Number,
   totalExerciceTime: Number,
   totalConsumption: Number,
