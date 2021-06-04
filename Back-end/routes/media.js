@@ -72,29 +72,39 @@ exports.add_blog = (req,res)=>{
 }
 
 exports.add_comment = (req,res)=>{
-  Media.find({id: req.query.id},(err,docs)=>{
+  Media.find({id: req.body.id},(err,docs)=>{
+    var comment=docs[0].comment;
     if(err){
       return res.json({
         msg:'Failed to connect',
-        code: '-1'
+        code: 'error'
       });
       if(!docs.length){
       //返回动态不存在
         return res.json({
           msg:'Diary doesn\'t exist',
-          code: '-1'
+          code: 'error'
         });
       }
     }else{
      //add new comment
-      var comment_usr = req.body.usr;
-      var comment_content = req.body.content;
-      var comment_date = Date();
-      comment.add(comment_usr,comment_content,comment_date);
-      return res.json({
-        msg:'comment is added',
-        code:'200'
-      });
+      comment['usr'].push(req.body.usr);
+      comment['content'].push(req.body.content);
+      Media.updateOne({id:req.body.id},{$set:{comment:comment}},(err)=>{
+         if(err){
+         res.json({
+             msg: 'Failed to update',
+             code: '-1'
+             });
+         }else{
+           return res.json({
+             msg:'new comment is added',
+             code: '200',
+             content:req.body.content
+           });
+         }
+           });
+
     }
   })
 }
@@ -299,6 +309,7 @@ exports.show_otherProfile = (req,res,next)=>{
 
 exports.add_follow = (req,res)=>{
   Profile.find({id: req.body.id},(err,docs)=>{
+    var favor = docs[0].follow;
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -313,37 +324,24 @@ exports.add_follow = (req,res)=>{
       }
     }else{
      //add new follow
-      var follow_id = req.body.id;
-      follow.add(follow_id);
-      return res.json({
-        msg:'follow is added',
-        code:'200'
-      });
-      Profile.find({id: follow_id},(err,docs)=>{
-        if(err){
-          return res.json({
-            msg:'Failed to connect',
-            code: '-1'
-          });
-          if(!docs.length){
-          //返回用户不存在
-            return res.json({
-              msg:'User doesn\'t existe',
-              code: '-1'
-            });
-          }
-        }else{
-         //add new Follower
-          follower.add(docs[0].id);
-          return res.json({
-            msg:'follower is added',
-            code:'200'
-          });
-
-        }
-      })
-    }
-  })
+     favor.push(req.body.user_id);
+     Profile.updateOne({id:req.body.id},{$set:{follow:favor}},(err)=>{
+       if(err){
+         res.json({
+           msg:'Failed to update',
+           code: '-1'
+         });
+       }
+       else{
+         return res.json({
+           msg:'follow is added',
+           code: '200',
+           user_id:req.body.user_id
+         });
+       }
+     });
+   }
+ });
 }
 
 //function thumb up
