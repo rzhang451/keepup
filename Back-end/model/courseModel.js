@@ -11,7 +11,8 @@ var courseSchema = mongoose.Schema({
   consumption:Number,
   intro:String,
   way:String,
-  cover:String
+  cover:String,
+  duration_check:String
 });
 //Model
 module.exports = mongoose.model('Course',courseSchema);
