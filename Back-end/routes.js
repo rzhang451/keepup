@@ -105,7 +105,7 @@ router.get('/profile/follower/:id',users.follower);
 //根据用户id查看已关注到人
 router.get('/profile/subscribe/:id',users.subscribe);
 //更改头像
-router.post('/profile/avatar/upload', uploadAvatar.single('photo'),users.avatar);
+router.post('/profile/avatar/upload', uploadAvatar.single('photo'),home.avatar);
 //修改用户名/性别/地点/个人简介
 router.post('/profile/change',users.change_profile);
 //修改密码
