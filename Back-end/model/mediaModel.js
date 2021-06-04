@@ -10,18 +10,18 @@ var mediaSchema = mongoose.Schema({
   usr:String,
   usr_id:String,
   content:String,
-  pic:[String],
+  pic:String,
   date:String,
   comment:[{
     usr:String,
-    content:String,
-    Comment_date:String
+    content:String
   }],
   like:{
     type:Number,
     default:0
   },
-  like_usr:[String]
+  like_usr:[String],
+  avatar:String
 });
 
 module.exports = mongoose.model('Media',mediaSchema);
