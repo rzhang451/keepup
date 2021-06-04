@@ -1,8 +1,12 @@
 //获取连接
 const mongoose = require('./mongoose');
+const uuid = require('node-uuid');
 //Profile database
 var courseSchema = mongoose.Schema({
-  id: String,
+  id:{
+    type:String,
+    default:uuid.v1()
+  },
   name: String,
   duration: Number,
   type: String,
