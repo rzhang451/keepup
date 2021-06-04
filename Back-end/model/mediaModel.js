@@ -20,7 +20,10 @@ var mediaSchema = mongoose.Schema({
     type:Number,
     default:0
   },
-  like_usr:[String],
+  like_usr:{
+    type:[String],
+    default:[]
+  },
   avatar:String
 });
 
