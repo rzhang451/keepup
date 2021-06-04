@@ -4,7 +4,7 @@ const Profile = require('../model/profileModel');
 exports.search_course = (req,res)=>{
   //var courses = [];
   //find the course that has the key word given by the user
-  Course.find({name:{$regex:req.query.key,$options:'i'}},(err,docs)=>{
+   Course.find({name:{$regex:req.query.key,$options:'i'}},(err,docs)=>{
     if(err){
       return res.json({
         msg:'failed to connect',
@@ -18,12 +18,22 @@ exports.search_course = (req,res)=>{
       });
     }
     else{
+      var datas =[];
+      for( i=0;i<docs.length;i++){
+        var data={
+          name:docs[i].name,
+          duration:docs[i].duration,
+          cover:docs[i].cover,
+          miniIntro:docs[i].miniIntro,
+        }
+        datas.push(data)
+    }
       console.log("Request for " + req.url + " received.");
       return res.json({
           msg:'Course is returned',
           code:'200',
           result_number:docs.length,
-          data:[{name:docs[0].name,duration:docs[0].duration,cover:docs[0].cover}]
+          data:datas
         });
   }
 });
