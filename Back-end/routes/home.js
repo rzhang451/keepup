@@ -108,7 +108,7 @@ exports.avatar = (req,res)=>{
       }
     }else{
       //upload avatar
-      var storage = multer.diskStorage({
+      var storage_avatar = multer.diskStorage({
         destination:path.resolve(__dirname,'../public/upload/image/profile'),
         filename:function(req,file,cb){
         let extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
