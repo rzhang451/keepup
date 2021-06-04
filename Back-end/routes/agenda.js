@@ -68,3 +68,64 @@ exports.agenda = (req,res,next)=>{
     });
   })
 }
+
+
+exports.initialize_agenda=(req,res)=>{
+  Profile.findOne({id:req.query.id},(err,docs)=>{
+    if(err){
+      return res.json({
+        msg:'Failed to connect',
+        code: '-1'
+      });
+    }
+    if(!docs){
+      return res.json({
+        msg:'Username incorrect!',
+        code: '-1'
+      });
+    }
+    else{
+      return res.json({
+        msg:'agenda get ok!',
+        code:'200',
+        agenda:docs.personal_date
+      });
+    }
+  });
+}
+
+
+exports.add_agenda=(req,res)=>{
+  Profile.findOne({id:req.body.id},(err,docs)=>{
+    if(err){
+        return res.json({
+          msg:'Failed to connect',
+          code: '-1'
+        });
+      }
+    if(!docs){
+        return res.json({
+          msg:'Username incorrect!',
+          code: '-1'
+        });
+      }
+    else{
+      console.log("Request for " + req.url + " received.");
+      var agenda=docs.personal_date;
+    }
+  });
+  agenda.push(req.body.date);
+  Profile.updateOne({id:req.body.id},{$set:{personal_date:agenda}},(err)=>{
+    if(err){
+      res.json({
+          msg: 'Failed to update',
+          code: '-1'
+      });
+    }else{
+      res.json({
+        msg: 'Update ok',
+        code: '200'
+      });
+    }
+  });
+}
