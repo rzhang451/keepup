@@ -5,14 +5,14 @@ const uuid = require('node-uuid');
 var courseSchema = mongoose.Schema({
   id:{
     type:String,
-    default:uuid.v1()
+    default:uuid.v1
   },
   name: String,
-  duration: Number,
+  duration: String,
   type: String,
-  difficulty: Number, //(1-easy, 2-medium 3-difficult)
+  difficulty: String, //(1-easy, 2-medium 3-difficult)
   goal: String,
-  consumption:Number,
+  consumption:String,
   intro:String,
   way:String,
   cover:String,
