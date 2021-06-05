@@ -8,13 +8,41 @@ const uploadMedia = multer({dest:__dirname + '/public/upload/image/social'});
 const login = require('./routes/login');
 const home = require('./routes/home');
 const agenda = require('./routes/agenda');
-const users = require('./routes/users'); 
+const users = require('./routes/users');
 const media = require('./routes/media');
 const search = require('./routes/search');
+//define the storage of avatar
+/*var storage_avatar = multer.diskStorage({
+  destination:path.resolve(__dirname,'../public/upload/image/profile'),
+  filename:function(req,file,cb){
+  let extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
+  let filename = docs[0].username
+  cb(null,filename + extName)
+  }
+});
+
+var imageUploader_avatar = multer({
+  storage_avatar:storage_avatar
+});*/
+//define the storage of post image
+/*var storage_social = multer.diskStorage({
+  destination:path.resolve(__dirname,'../public/upload/image/social'),
+  filename:function(req,file,cb){
+    let extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
+    let filename = docs[0].username + Date.now()
+    cb(null,filename + extName)
+  }
+});
+
+var imageUploader_social = multer({
+  storage_social:storage_social
+});*/
+
 
 //*******************************************
 //登录页面：该页面在显示时，不需要向后端请求资源
 
+router.get('/sign-in/auto',login.sign_in_auto);
 //触发按钮 activities
 //登录 Sign-in
 //前端向后端发送邮箱和密码，后端向前端返回登录信息
@@ -39,19 +67,22 @@ router.post('/sign-up/pwd',login.sign_up_pwd);
 router.post('/forgetpwd/email',login.forget_pwd_email);
 //验证验证码
 //前端向后端发送email和验证码，后端返回验证状态
+//router.post('/forgetpwd/code',login.forget_pwd_code);
+//验证成功后，由忘记密码页面跳转至修改密码页面
+//修改密码页面：该页面在显示时，不需要向后端请求资源
+//注册
+//前端向后端发送邮箱和密码，后端返回注册状态和用户id
 router.post('/forgetpwd/login',login.forget_pwd_login);
 
 //***************************
 //主页: 该页面在显示时，前端向后端发送用户id，后端返回推荐的和已收藏的课程
 
 //返回推荐课程
-router.get('/mainpage/recommand/:id',home.recommand);
+//router.get('/mainpage/recommend/:id',home.recommend);
 
 //返回收藏课程
-router.get('/mainpage/favorite/:id',home.show_favor_course);
+router.get('/mainpage/favorite',home.show_favor_course);
 
-//return list of followings
-router.get('/profile/follow',home.show_follow);
 //触发按钮 activities
 
 //search
@@ -63,20 +94,26 @@ router.get('/search/label',search.label_search);
 router.get('/search',search.search_course);
 //find users
 router.get('/search',search.search_user);
+//find cover
+router.get('/cover',search.cover);
 
 
 //***************************
 //agenda
-router.get('/agenda/:id',agenda.agenda);
-
+router.get('/getdate',agenda.initialize_agenda);
+router.post('/adddate',agenda.add_agenda);
 //***************************
 //social media
 //see other's profile in media
-router.get('/profile/user/:id',media.show_otherProfile);
+router.get('/profile/user/:id',media.user);
 //add a follow
-router.get('/media/subscribe/add/:id',media.add_follow);
-//write and share in media
+//router.get('/media/subscribe/add/:id',media.add_follow);
+//write and share in media*/
 router.post('/media/post',media.add_blog);
+//下载朋友圈的图片
+//router.post('media/image',imageUploader_social,function(req, res){
+  //console.log(req.files);
+//})
 //write comment
 router.post('/media/comment',media.add_comment);
 //show the posts of the people followed by a user
@@ -84,35 +121,35 @@ router.get('/media/showposts_follow/:id',media.show_blog_follow);
 //show user's own posts
 router.get('/media/showposts_self/:id',media.show_blog_self);
 //show other users' profile
-router.get('/media/showothers/:id',media.show_blog_all);
+router.get('/media/showposts_all/:id',media.show_blog_all);
 //thumb up for a post
 router.post('/media/thumb_up',media.thumb_up);
 
 //***************************
-router.get('/public/image/*',users.image);
+//router.get('/public/image/*',users.image);
 
-router.get('/course/info/:id',users.info);
+//router.get('/course/info/:id',users.info);
 //运动结束后记录
-router.get('/course/check',users.check);
+//router.get('/course/check',users.check);
 
 //加载个人主页
-router.get('/profile/id',users.profile);
+//router.get('/profile/:id',users.profile);
 
 //load Health page
-router.get('/profile/health',users.health);
+/*router.get('profile/health/:id',users.health);
 //根据用户id查看follower
-router.get('/profile/follower/:id',users.follower);
+router.get('profile/follower/:id',users.follower);
 //根据用户id查看已关注到人
-router.get('/profile/subscribe/:id',users.subscribe);
-//更改头像
-router.post('/profile/avatar/upload', uploadAvatar.single('photo'),home.avatar);
+router.get('profile/subscribe/:id',users.subscribe);
+//upload avatar 头像
+router.post('profile/avatar/upload',home.avatar);
 //修改用户名/性别/地点/个人简介
-router.post('/profile/change',users.change_profile);
+router.post('profile/change',users.change_profile);
 //修改密码
 router.post('/profile/changepwd',users.change_pwd);
 //修改身高体重
 router.post('/profile/health',users.change_health);
-//add the course to favor course
+//add the course to favor course*/
 router.get('/search/add_favor',users.favor_course);
 //返回视频信息
 router.get('/course',users.video);
