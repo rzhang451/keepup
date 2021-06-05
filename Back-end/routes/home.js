@@ -93,7 +93,8 @@ exports.favorite = (req,res,next)=>{
 }
 
 exports.avatar = (req,res)=>{
-  Profile.find({id: req.body.id},(err,docs)=>{
+    
+  Profile.findOne({id: req.body.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -107,36 +108,28 @@ exports.avatar = (req,res)=>{
         });
       }
     }else{
-      //upload avatar
-      var storage_avatar = multer.diskStorage({
-        destination:path.resolve(__dirname,'../public/upload/image/profile'),
-        filename:function(req,file,cb){
-        let extName = file.originalname.slice(file.originalname.lastIndexOf('.'))
-        let filename = docs[0].username
-        cb(null,filename + extName)
-        }
-      })
+      
 
-      var imageUploader_avatar = multer({
-        storage_avatar:storage_avatar
-      })
-      router.post('/profile/avatar/upload/image', imageUploader_avatar.single('photo'),function(req,res){
-        console.log(req.files);
-      });
-      Profile.update({id:docs[0].id},{$set:{avatar:req.files.path}},(err)=>{
+      Profile.update({id:req.body.id},{$set:{avatar:req.files[0].filename}},(err)=>{
         if (!err){
-          console.log('soccessfully modified')
+          console.log('soccessfully modified');
+          console.log(req.files[0].filename);
+          return res.json({
+            msg:'avatar is uploaded',
+            code:'200',
+            data:req.files[0].filename
+          });
         }
         else{
           throw err
         }
       });
-      return res.json({
-      msg:'avatar is uploaded',
-      code:'200'
-      });
+      
+      
+      
     }
   })
+  
 }
 exports.show_favor_course=(req,res)=>{
   Profile.find({id:req.query.id},(err,docs)=>{
