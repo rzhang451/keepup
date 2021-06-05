@@ -273,9 +273,11 @@ exports.change_pwd = (req,res)=>{
 }
 
 exports.change_health = (req,res)=>{
-  Profile.update({id:req.body.id},{$set:{Height = req.body.height,
-                                         Weight = req.body.weight,
-                                         Bmi = req.body.bmi,}},(err)=>{
+  var BmiCalcule = req.body.Weight/(req.body.Height*req.body.Height);
+  Profile.update({id:req.body.id},{$set:{username :req.body.username,
+                                         Height :req.body.Height,
+                                         Weight : req.body.Weight,
+                                         Bmi : BmiCalcule,}},(err)=>{
     if(err){
       res.json({
           msg: 'Failed to update',
