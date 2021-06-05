@@ -2,7 +2,7 @@ const Profile = require('../model/profileModel');
 const MyCourse = require('../model/myCourseModel');
 const Course = require('../model/courseModel');
 
-//日程表页面: 该页面在显示时，前端向后端发送用户id，返回今日课程和打卡天数。
+//Agenda page: Frontend send user it to backend and receive today's courses and persistence time（days）
 exports.agenda = (req,res,next)=>{
   var courseList = [];
   Profile.find({id: req.params.id},(err,docs)=>{
@@ -12,7 +12,7 @@ exports.agenda = (req,res,next)=>{
         code: 'error'
       });
       if(!docs.length){
-      //返回用户不存在
+      //if user doesn't existe
         return res.json({
           msg:'User doesn\'t existe',
           code: 'error'
