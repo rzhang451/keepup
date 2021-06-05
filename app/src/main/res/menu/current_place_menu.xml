@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/option_polyline"
+        android:title="@string/option_polyline"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/option_screen"
+        android:title="@string/option_screen"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/option_location"
+        android:title="@string/option_location"
+        app:showAsAction="always"/>
+</menu>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="yellow_back1">#FFF2A124</color>
+    <color name="purple_700">#FFFFA500</color>
+    <color name="purple_200">#FF8B4513</color>
+    <color name="teal_200">#FF8B4500</color>
+
+    <color name="view">#F2F2F2</color>
+    <color name="red">#CE413A</color>
+    <color name="qianhui">#EEEEEE</color>
+    <color name="black2">#F3F5F8</color>
+    <color name="hui">#cccccc</color>
+    <color name="rb_white">#00ffffff</color>
+    <color name="btn3">#CE413A</color>
+    <color name="darker_gray">#aaa</color>
+    <color name="btn1">#69B056</color>
+    <color name="btn6">#F78AE0</color>
+    <color name="cool_green_normal">#4caf50</color>
+    <color name="cool_green_shade">#81c784</color>
+    <color name="viewfinder_frame">#60000000</color>
+</resources>

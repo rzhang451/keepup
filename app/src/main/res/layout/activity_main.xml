@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="false"
+    android:padding="20dp"
+    >
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
+    <View android:id="@+id/view"
+        style="@style/view"
+        />
+    <RadioGroup
+        android:layout_alignParentBottom="true"
+        android:id="@+id/main_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            style="@style/radio_button"
+            android:id="@+id/rb_main"
+            android:drawableTop="@drawable/bt_home"
+            android:text="HOME"
+            android:textColor="@color/yellow_back1"
+            />
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_running"
+            android:drawableTop="@drawable/bt_running"
+            android:text="RUNNING"
+            android:textColor="@color/yellow_back1"
+            />
+
+        <!--        <RadioButton-->
+        <!--            style="@style/radio_button"-->
+        <!--            android:visibility="visible"-->
+        <!--            android:id="@+id/rb_Exercice2"-->
+        <!--            android:drawableTop="@drawable/tab_second_page"-->
+        <!--            android:text="Diet Recommendation"/>-->
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_media"
+            android:drawableTop="@drawable/bt_media"
+            android:text="MEDIA"
+            android:textColor="@color/yellow_back1"
+            />
+
+
+
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_agenda"
+            android:drawableTop="@drawable/bt_agenda"
+            android:text="AGENDA"
+            android:textColor="@color/yellow_back1"
+            />
+        <RadioButton
+            style="@style/radio_button"
+            android:id="@+id/rb_my"
+            android:drawableTop="@drawable/bt_profile"
+            android:text="PROFILE"
+            android:textColor="@color/yellow_back1"
+            />
+    </RadioGroup>
+</LinearLayout>

@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.keepup_v1.views.InputMethodLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/root"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:id="@+id/layout_close"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_toRightOf="@+id/layout_back"
+                android:background="@color/yellow_back1"
+                android:visibility="visible">
+
+
+                <ImageView
+                    android:id="@+id/iv_close"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_12"
+                    android:layout_marginTop="@dimen/dp_20"
+                    android:src="@mipmap/cha"
+                    android:visibility="visible" />
+
+                <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="@dimen/dp_30"
+                    android:text="FORGET PASSWORD"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_16"
+                    android:visibility="visible" />
+
+
+                <TextView
+                    android:id="@+id/tv_regiest"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:visibility="visible"
+
+                    />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp"
+                >
+                <LinearLayout
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="bottom">
+                    <ImageView
+                        android:id="@+id/iv_signup_icon"
+                        android:layout_height="100dp"
+                        android:layout_width="100dp"
+                        android:src="@drawable/icon"
+                        android:layout_marginRight="10dp"
+                        />
+                    <TextView
+                        android:id="@+id/tv_fpw_keepup"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="KeepUp"
+                        android:textSize="50sp"
+                        android:textColor="@color/purple_200"
+                        android:gravity="bottom"
+                        />
+                </LinearLayout>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome to our Commununity!"
+                    android:textSize="15sp"
+                    android:textColor="@color/yellow_back1"
+                    android:layout_marginBottom="10dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_50"
+                android:layout_marginRight="15dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@mipmap/icon_email"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/purple_700"
+                    />
+
+                <EditText
+                    android:id="@+id/et_phoneNum"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center|start"
+                    android:hint="Please enter your email"
+                    android:padding="@dimen/dp_12"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/sp_12" />
+
+                <Button
+                    android:id="@+id/btn_verify_code"
+                    style="@style/button3"
+                    android:background="@drawable/login_bt"
+                    android:text="GET_CODE"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_50"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@mipmap/icon_code"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/purple_700"
+                    />
+
+                <EditText
+                    android:id="@+id/et_code"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center|start"
+                    android:hint="Please enter code"
+                    android:padding="@dimen/dp_12"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_50"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@mipmap/password"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/purple_700"
+                    />
+
+                <EditText
+                    android:id="@+id/et_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center|start"
+                    android:hint="Please enter password"
+                    android:padding="@dimen/dp_12"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_marginLeft="@dimen/dp_15"
+                android:layout_marginTop="@dimen/dp_50"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="@dimen/dp_30"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@mipmap/password"
+                    android:layout_marginRight="5dp"
+                    />
+
+                <View
+                    android:layout_width="2dp"
+                    android:layout_height="@dimen/dp_30"
+                    android:background="@color/purple_700"
+                    />
+
+                <EditText
+                    android:id="@+id/et_verify_password"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:gravity="center|start"
+                    android:hint="Please verify password"
+                    android:padding="@dimen/dp_12"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColor="@color/black"
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/sp_12" />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_fpw_login"
+                style="@style/button2"
+                android:background="@drawable/login_bt"
+                android:text="SUBMIT"
+                android:textColor="@color/white" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</com.example.keepup_v1.views.InputMethodLayout>

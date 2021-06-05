@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:background="@android:color/white"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/status_bar_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="@android:color/white"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:title="Home" />
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <LinearLayout
+
+                android:layout_width="342dp"
+                android:layout_height="wrap_content"
+                android:gravity="center">
+
+                <EditText
+                    android:id="@+id/search_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:hint="请输入搜索内容" />
+
+                <Button
+                    android:id="@+id/search"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="15dp"
+                    android:background="@android:color/holo_blue_bright"
+                    android:orientation="vertical"
+                    android:textSize="16sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="分类查找"
+                android:textColor="#000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="类型："
+                    android:textColor="@color/darker_gray" />
+
+                <CheckBox
+                    android:id="@+id/category_cb1"
+                    android:layout_width="60dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="腿" />
+
+                <CheckBox
+                    android:id="@+id/category_cb2"
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="胳膊" />
+
+                <CheckBox
+                    android:id="@+id/category_cb3"
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="腹" />
+
+                <CheckBox
+                    android:id="@+id/category_cb4"
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="back" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="时长："
+                    android:textColor="@color/darker_gray" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="5-10" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="10-20" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="20-40" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="40以上" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="难度："
+                    android:textColor="@color/darker_gray" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="易" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="中" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="难" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="目标："
+                    android:textColor="@color/darker_gray" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="练肌" />
+
+                <CheckBox
+                    android:layout_width="60dp"
+                    android:layout_height="28dp"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/sel_category"
+                    android:button="@null"
+                    android:gravity="center"
+                    android:text="减肥" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="推荐课程"
+                android:textColor="#000" />
+
+            <com.example.keepup_v1.views.MaxListView
+                android:id="@+id/recommend_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:divider="#00000000"
+                android:dividerHeight="10dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:drawableLeft="@mipmap/collect"
+                android:gravity="center_vertical"
+                android:text="已收藏课程"
+                android:textColor="#000" />
+
+            <com.example.keepup_v1.views.MaxListView
+                android:id="@+id/collect_lv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:divider="#00000000"
+                android:dividerHeight="10dp" />
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
