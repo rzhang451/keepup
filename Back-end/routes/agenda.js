@@ -71,7 +71,7 @@ exports.agenda = (req,res,next)=>{
 
 
 exports.initialize_agenda=(req,res)=>{
-  Profile.findOne({id:req.query.id},(err,docs)=>{
+  Profile.find({id:req.query.id},(err,docs)=>{
     if(err){
       return res.json({
         msg:'Failed to connect',
@@ -85,10 +85,12 @@ exports.initialize_agenda=(req,res)=>{
       });
     }
     else{
+      var personaldate=[];
+      personaldate=docs[0].favor_date;
       return res.json({
         msg:'agenda get ok!',
         code:'200',
-        agenda:docs.personal_date
+        checked:personaldate
       });
     }
   });
