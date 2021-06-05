@@ -1,3 +1,0 @@
-include ':volley'
-include ':app'
-rootProject.name = "keepUp_v1"
