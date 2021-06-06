@@ -3,10 +3,9 @@
 ## Table of Contents:
 * Background
 * Functions
-
-    123
-    456
-    789
+        123
+        456
+        789
     
 Our group is the group 8.
 
