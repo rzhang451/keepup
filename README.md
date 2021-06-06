@@ -1,7 +1,7 @@
 # Keepup
 
 ## Table of Contents:
-* Background
+* [Background](#Background)
 * Functions
 * Structure
 * Contribution
@@ -43,6 +43,8 @@ ZHANG Ranyi
 * Frontend: LU Wenxuan，YANG Wentian
 * Backend: LI Xinqing, LI Ziyu, YANG Weiyi, ZHANG Ranyi
 * Database: LIU Yiheng, SONG Yuxuan
+
+In the early stages we basically did the division of work as planned, but eventually everyone worked together and finished debugging, so that each function was done by more people than planned.
 
 ### Specific division of work
 #### Running
