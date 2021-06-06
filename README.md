@@ -2,9 +2,9 @@
 
 ## Table of Contents:
 * [Background](#Background)
-* Functions
-* Structure
-* Contribution
+* [Functions](#Functions)
+* [Structure](#Structure)
+* [Contribution](#Contribution)
 
 ## Background
 KeepUp is an easy to use fitness app. Users of all levels and needs will find a video course that meets their needs. 
@@ -21,6 +21,8 @@ Our app can plan your running route when you're outdoors and provide you with su
 * Favor course
 * Agenda
 * Setting
+
+For more specific information about functions, clic [here](https://github.com/rzhang451/keepup/blob/main/function_introduction.md).
 
 ## Structure
 Android Studio + Node.js (express) + Mongoose
