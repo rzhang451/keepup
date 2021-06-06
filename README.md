@@ -13,7 +13,6 @@ The goal of this app is to lower the barriers to fitness and allow users to exer
 
 Our app can plan your running route when you're outdoors and provide you with suitable videos when you're indoors. In our app's community, users can see other users sharing their workouts to inspire more users to join them. Our app also provides users with an agenda page to encourage themselves to keep exercising.
 
-
 ## Functions
 
 ## Structure
@@ -22,7 +21,7 @@ Our app can plan your running route when you're outdoors and provide you with su
 
 Our group is the group 8.
 
-Members of our group:
+### Members of our group:
 LI Xinqing,
 LI Ziyu,
 LIU Yiheng,
@@ -31,4 +30,7 @@ SONG Yuxuan,
 YANG Weiyi,
 YANG Wentian,
 ZHANG Ranyi
+
+### Division of work
+
 
