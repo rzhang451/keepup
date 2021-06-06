@@ -34,12 +34,12 @@ ZHANG Ranyi
 
 ### Division of work
 
-#### General division of work
+#### * General division of work
 * Frontend: LU Wenxuan，YANG Wentian
 * Backend: LI Xinqing, LI Ziyu, YANG Weiyi, ZHANG Ranyi
 * Database: LIU Yiheng, SONG Yuxuan
 
-#### Specific division of work
+#### * Specific division of work
 ##### Running
 * Frontend + API : LU Wenxuan<br>
 ##### Log in
