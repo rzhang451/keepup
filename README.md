@@ -1,4 +1,4 @@
-# Keepup
+# KeepUp
 Updated 06/06/2021
 ## Table of Contents:
 * [Background](#Background)
@@ -22,7 +22,7 @@ Our app can plan your running route when you're outdoors and provide you with su
 * Agenda
 * Setting
 
-For more specific information about functions, clic [here](https://github.com/rzhang451/keepup/blob/main/function_introduction.md).
+For more information about these functions, clic [here](https://github.com/rzhang451/keepup/blob/main/function_introduction.md).
 
 ## Structure
 Android Studio + Node.js (express) + Mongoose
