@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    >
+    <LinearLayout
+        android:layout_height="30dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/bt_media_global"
+            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:text="global"
+            android:textColor="@color/yellow_back1"
+            android:background="@color/white"
+            />
+        <Button
+            android:id="@+id/bt_media_friend"
+            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:text="friend"
+            android:textColor="@color/yellow_back1"
+            android:background="@color/white"
+            />
+        <Button
+            android:id="@+id/bt_media_mine"
+            android:layout_height="match_parent"
+            android:layout_width="100dp"
+            android:text="mine"
+            android:textColor="@color/yellow_back1"
+            android:background="@color/white"
+            />
+        <ImageButton
+            android:id="@+id/ibt_media_add"
+            android:layout_height="match_parent"
+            android:layout_width="30dp"
+            android:background="@drawable/bt_add_message"
+            />
+    </LinearLayout>
+    <View
+        android:layout_height="1dp"
+        android:layout_width="match_parent"
+        android:background="@color/yellow_back1"
+        />
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_media_media"
+        android:layout_height="0dp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:background="@color/white">
+        <ListView
+            android:id="@+id/lv_media_media"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            />
+        <!--        <androidx.recyclerview.widget.RecyclerView-->
+        <!--            android:id="@+id/rv_media_media"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="@color/white"-->
+        <!--            />-->
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <RadioGroup
+        android:layout_alignParentBottom="true"
+        android:id="@+id/media_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            style="@style/radio_button"
+            android:id="@+id/rb_media_main"
+            android:drawableTop="@drawable/bt_home"
+            android:text="HOME"
+            android:textColor="@color/yellow_back1"
+            />
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_media_running"
+            android:drawableTop="@drawable/bt_running"
+            android:textColor="@color/yellow_back1"
+            android:text="RUNNING"/>
+
+        <!--        <RadioButton-->
+        <!--            style="@style/radio_button"-->
+        <!--            android:visibility="visible"-->
+        <!--            android:id="@+id/rb_Exercice2"-->
+        <!--            android:drawableTop="@drawable/tab_second_page"-->
+        <!--            android:text="Diet Recommendation"/>-->
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_media_media"
+            android:drawableTop="@drawable/bt_media"
+            android:textColor="@color/yellow_back1"
+            android:text="MEDIA"/>
+
+
+
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_media_agenda"
+            android:drawableTop="@drawable/bt_agenda"
+            android:textColor="@color/yellow_back1"
+            android:text="AGENDA"/>
+        <RadioButton
+            style="@style/radio_button"
+            android:id="@+id/rb_media_my"
+            android:drawableTop="@drawable/bt_profile"
+            android:textColor="@color/yellow_back1"
+            android:text="PROFILE"/>
+    </RadioGroup>
+    <!--
+    <LinearLayout
+        android:layout_height="50dp"
+        android:layout_width="match_parent"
+        android:orientation="horizontal">
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            />
+        <ImageButton
+            android:id="@+id/ibt_media_running"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bt_running"
+            />
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            />
+        <ImageButton
+            android:id="@+id/ibt_media_media"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/media_pressed"
+            />
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            />
+        <ImageButton
+            android:id="@+id/ibt_media_home"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bt_home"
+            />
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            />
+        <ImageButton
+            android:id="@+id/ibt_media_agenda"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bt_agenda"
+            />
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            />
+        <ImageButton
+            android:id="@+id/ibt_media_profile"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/bt_profile"
+            />
+        <View
+            android:layout_height="match_parent"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            />
+    </LinearLayout>
+    -->
+</LinearLayout>

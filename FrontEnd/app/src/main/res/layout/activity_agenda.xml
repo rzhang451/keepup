@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_agenda"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.keepup_v1.activity.AgendaActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="20dp"
+                android:textSize="25dp"
+                android:text="Agenda:"
+                android:textColor="@color/black" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/shape_grayline_circle"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_margin="1dp"
+                    android:background="#cbf4b806" />
+
+                <TextView
+                    android:id="@+id/today"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_margin="10dp"
+                    android:text="Keepup!"
+                    android:textColor="@color/black"
+                    android:textSize="13sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#999999" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="SUN" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="MON" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="TUE" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="WEN" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="THU" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="FRI" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="SAT" />
+                </LinearLayout>
+
+
+                <com.example.keepup_v1.views.SquareGridView
+                    android:id="@+id/registration_calendar_gv"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#999999"
+                    android:horizontalSpacing="1dp"
+                    android:numColumns="7"
+                    android:padding="1dp"
+                    android:scrollbars="none"
+                    android:verticalSpacing="1dp" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="My courses"
+                android:id="@+id/mycourse"></Button>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Afficher"
+                android:id="@+id/affiche"></Button>
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="190dp"/>
+            <RadioGroup
+                android:layout_alignParentBottom="true"
+                android:id="@+id/agenda_radioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    style="@style/radio_button"
+                    android:id="@+id/rb_agen_main"
+                    android:drawableTop="@drawable/bt_home"
+                    android:text="HOME"
+                    android:textColor="@color/yellow_back1"
+                    />
+
+                <RadioButton
+                    style="@style/radio_button"
+                    android:visibility="visible"
+                    android:id="@+id/rb_agen_running"
+                    android:drawableTop="@drawable/bt_running"
+                    android:textColor="@color/yellow_back1"
+                    android:text="RUNNING"/>
+
+                <RadioButton
+                    style="@style/radio_button"
+                    android:visibility="visible"
+                    android:id="@+id/rb_agen_media"
+                    android:drawableTop="@drawable/bt_media"
+                    android:textColor="@color/yellow_back1"
+                    android:text="MEDIA"/>
+
+
+
+                <RadioButton
+                    style="@style/radio_button"
+                    android:visibility="visible"
+                    android:id="@+id/rb_agen_agenda"
+                    android:drawableTop="@drawable/bt_agenda"
+                    android:textColor="@color/yellow_back1"
+                    android:text="AGENDA"/>
+                <RadioButton
+                    style="@style/radio_button"
+                    android:id="@+id/rb_agen_my"
+                    android:drawableTop="@drawable/bt_profile"
+                    android:textColor="@color/yellow_back1"
+                    android:text="PROFILE"/>
+            </RadioGroup>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</LinearLayout>

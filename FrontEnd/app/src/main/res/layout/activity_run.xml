@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".activity.RunningActivity">
+    <fragment
+        android:id="@+id/mapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_weight="1"
+        />
+    <RadioGroup
+        android:layout_alignParentBottom="true"
+        android:id="@+id/running_radioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <RadioButton
+            style="@style/radio_button"
+            android:id="@+id/rb_run_main"
+            android:drawableTop="@drawable/bt_home"
+            android:text="HOME"
+            android:textColor="@color/yellow_back1"
+            />
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_run_running"
+            android:drawableTop="@drawable/bt_running"
+            android:textColor="@color/yellow_back1"
+            android:text="RUNNING"/>
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_run_media"
+            android:drawableTop="@drawable/bt_media"
+            android:textColor="@color/yellow_back1"
+            android:text="MEDIA"/>
+
+
+
+
+        <RadioButton
+            style="@style/radio_button"
+            android:visibility="visible"
+            android:id="@+id/rb_run_agenda"
+            android:drawableTop="@drawable/bt_agenda"
+            android:textColor="@color/yellow_back1"
+            android:text="AGENDA"/>
+        <RadioButton
+            style="@style/radio_button"
+            android:id="@+id/rb_run_my"
+            android:drawableTop="@drawable/bt_profile"
+            android:textColor="@color/yellow_back1"
+            android:text="PROFILE"/>
+    </RadioGroup>
+
+</LinearLayout>
