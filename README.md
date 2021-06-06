@@ -23,7 +23,7 @@ Our app can plan your running route when you're outdoors and provide you with su
 * Setting
 
 ## Structure
-Android + Node.js + Mongoose
+Android Studio + Node.js (express) + Mongoose
 
 ## Contribution
 
