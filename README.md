@@ -1,4 +1,11 @@
-# KeepUp
+# Keepup
+
+## Table of Contents:
+* Background
+* Functions
+
+    123
+    
 Our group is the group 8.
 
 Members of our group:
