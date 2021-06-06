@@ -74,4 +74,7 @@ ZHANG Ranyi
 * Frontend : YANG Wentian
 * Backend : LIU Yiheng, SONG Yuxuan, YANG Weiyi
 * Database : LIU Yiheng, SONG Yuxuan
+#### Others
+* Edit Readme : SONG Yuxuan, YANG Weiyi
+* Powerpoint : YANG Weiyi, ZHANG Ranyi
 
