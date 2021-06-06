@@ -14,9 +14,16 @@ The goal of this app is to lower the barriers to fitness and allow users to exer
 Our app can plan your running route when you're outdoors and provide you with suitable videos when you're indoors. In our app's community, users can see other users sharing their workouts to inspire more users to join them. Our app also provides users with an agenda page to encourage themselves to keep exercising.
 
 ## Functions
+* Course search engine
+* Running Record
+* Exercise Recommendation
+* Shared Media
+* Favor course
+* Agenda
+* Setting
 
 ## Structure
-
+Android + Node.js + Mongoose
 
 ## Contribution
 
@@ -39,14 +46,14 @@ ZHANG Ranyi
 
 ### Specific division of work
 #### Running
-* Frontend + API : LU Wenxuan<br>
+* Frontend + API : LU Wenxuan
 #### Log in
 * Frontend : LI Xinqing, YANG Wentian
 * Backend : LI Xinqing, LI Ziyu
 * Database : LIU Yiheng, SONG Yuxuan
 #### Media
 * Frontend : LI Xinqing
-* Backend : LI Xinqing, LIU Yiheng, YANG Weiyi, SONG Yuxuan
+* Backend : LI Xinqing, LIU Yiheng, SONG Yuxuan, YANG Weiyi,
 * Database : LIU Yiheng, YANG Weiyi, SONG Yuxuan
 #### Course search
 * Frontend : YANG Wentian
