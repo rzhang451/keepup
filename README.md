@@ -32,13 +32,13 @@ Android Studio + Node.js (express) + Mongoose
 Our group is the group 8.
 
 ### Members of our group:
-LI Xinqing,
-LI Ziyu,
-LIU Yiheng,
-LU Wenxuan,
-SONG Yuxuan,
-YANG Weiyi,
-YANG Wentian,
+LI Xinqing<br>
+LI Ziyu<br>
+LIU Yiheng<br>
+LU Wenxuan<br>
+SONG Yuxuan<br>
+YANG Weiyi<br>
+YANG Wentian<br>
 ZHANG Ranyi
 
 ### General division of work
